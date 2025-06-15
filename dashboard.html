@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WENSTECH PUBLISHERS - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            500: '#4F46E5',
+                            600: '#4338CA',
+                        },
+                        secondary: {
+                            500: '#10B981',
+                            600: '#059669',
+                        },
+                        danger: {
+                            500: '#EF4444',
+                            600: '#DC2626',
+                        },
+                        warning: {
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        },
+                        info: {
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #E5E7EB #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #E5E7EB;
+            border-radius: 4px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary-500 text-white font-bold">
+                            W
+                        </div>
+                        <span class="ml-3 font-bold text-lg">WENSTECH PUBLISHERS</span>
+                    </div>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <!-- Dashboard -->
+                        <a href="#" data-section="dashboard" class="nav-link bg-primary-500 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-tachometer-alt mr-3 text-white"></i>
+                            Dashboard
+                        </a>
+
+                        <!-- Books -->
+                        <a href="#" data-section="books" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-book mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Books
+                        </a>
+
+                        <!-- Manuscripts -->
+                        <a href="#" data-section="manuscripts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Manuscripts
+                        </a>
+
+                        <!-- Authors -->
+                        <a href="#" data-section="authors" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-user-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Authors
+                        </a>
+
+                        <!-- Sales -->
+                        <a href="#" data-section="sales" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-line mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Sales
+                        </a>
+
+                        <!-- Royalties -->
+                        <a href="#" data-section="royalties" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-hand-holding-usd mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Royalties
+                        </a>
+
+                        <!-- Inventory -->
+                        <a href="#" data-section="inventory" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-boxes mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Inventory
+                        </a>
+
+                        <!-- Marketing -->
+                        <a href="#" data-section="marketing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-bullhorn mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Marketing
+                        </a>
+
+                        <!-- Users -->
+                        <a href="#" data-section="users" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-users-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Users / Team
+                        </a>
+
+                        <!-- Reports -->
+                        <a href="#" data-section="reports" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-pie mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Reports
+                        </a>
+
+                        <!-- Settings -->
+                        <a href="#" data-section="settings" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto focus:outline-none">
+            <div class="sticky top-0 z-10 bg-white shadow-sm">
+                <div class="flex items-center justify-between h-16 px-4 sm:px-6">
+                    <button id="mobile-menu-button" class="md:hidden text-gray-500 hover:text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 id="page-title" class="text-xl font-bold text-gray-900">Dashboard</h1>
+                    <div class="flex items-center">
+                        <span class="text-sm font-medium text-gray-700">Admin User</span>
+                        <div class="ml-3 flex items-center justify-center h-8 w-8 rounded-full bg-primary-500 text-white cursor-pointer">
+                            <i class="fas fa-user text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div class="dashboard-section" id="dashboard-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        <!-- Total Sales Card -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-primary-500 rounded-md p-3">
+                                        <i class="fas fa-dollar-sign text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                                Total Sales
+                                            </dt>
+                                            <dd>
+                                                <div class="text-2xl font-semibold text-gray-900">$24,589</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-green-600">
+                                        <i class="fas fa-arrow-up"></i> 12% from last month
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Manuscripts Card -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-secondary-500 rounded-md p-3">
+                                        <i class="fas fa-file-alt text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                                Manuscripts
+                                            </dt>
+                                            <dd>
+                                                <div class="text-2xl font-semibold text-gray-900">14</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-green-600">
+                                        5 in review
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Royalties Card -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-warning-500 rounded-md p-3">
+                                        <i class="fas fa-hand-holding-usd text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                                Royalties Due
+                                            </dt>
+                                            <dd>
+                                                <div class="text-2xl font-semibold text-gray-900">$8,245</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-gray-500">
+                                        Next payment: Jun 30
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Inventory Card -->
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-info-500 rounded-md p-3">
+                                        <i class="fas fa-boxes text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">
+                                                Low Stock
+                                            </dt>
+                                            <dd>
+                                                <div class="text-2xl font-semibold text-gray-900">3</div>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-red-600">
+                                        Needs reorder
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="px-4 pb-6 sm:px-6">
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Recent Activity</h3>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-100 text-green-600">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">New book published</p>
+                                        <p class="text-sm text-gray-500">"The Art of Digital Publishing" is now available in all formats</p>
+                                        <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 text-blue-600">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">Manuscript submitted</p>
+                                        <p class="text-sm text-gray-500">"Future of Print Media" received from Jane Smith</p>
+                                        <p class="text-xs text-gray-400 mt-1">1 day ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-100 text-yellow-600">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">Low stock alert</p>
+                                        <p class="text-sm text-gray-500">"Marketing for Authors" has only 12 copies left</p>
+                                        <p class="text-xs text-gray-400 mt-1">2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Section -->
+            <div class="dashboard-section hidden" id="books-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Books Management</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Published Books</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Book
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Formats</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Digital Publishing</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Writer</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Print, eBook, Audio</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$24.99</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Published
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-eye"></i></button>
+                                                <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manuscripts Section -->
+            <div class="dashboard-section hidden" id="manuscripts-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Manuscript Workflow</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Current Submissions</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Future of Print Media</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jane Smith</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-15</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    Under Review
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Editor 1</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-search"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-user-tag"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-exchange-alt"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authors Section -->
+            <div class="dashboard-section hidden" id="authors-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Author Management</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Author Profiles</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Author
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Books</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Royalties Due</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                                            <i class="fas fa-user text-gray-500"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">John Writer</div>
+                                                        <div class="text-sm text-gray-500">john@example.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Standard</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$3,245</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-eye"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-file-contract"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-money-bill-wave"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales Section -->
+            <div class="dashboard-section hidden" id="sales-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Sales Reports</h1>
+                    
+                    <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                        <div class="bg-white shadow rounded-lg overflow-hidden lg:col-span-2">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Sales Overview</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="h-64 flex items-center justify-center bg-gray-50 rounded-md">
+                                    <p class="text-gray-500">Sales chart would appear here</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Top Selling Books</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">The Art of Digital Publishing</p>
+                                        <p class="text-sm text-gray-500">$24.99 - 342 copies</p>
+                                        <div class="mt-1 w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary-500 h-2 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Marketing for Authors</p>
+                                        <p class="text-sm text-gray-500">$19.99 - 215 copies</p>
+                                        <div class="mt-1 w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary-500 h-2 rounded-full" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Self-Publishing Guide</p>
+                                        <p class="text-sm text-gray-500">$14.99 - 187 copies</p>
+                                        <div class="mt-1 w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary-500 h-2 rounded-full" style="width: 35%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Recent Sales</h3>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Channel</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-15</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Digital Publishing</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Amazon</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">12</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$299.88</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Royalties Section -->
+            <div class="dashboard-section hidden" id="royalties-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Royalties Management</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Royalties Due</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-download mr-2"></i> Export
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sales</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Royalty Rate</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount Due</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">John Writer</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Q2 2023</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">342</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15%</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,245.50</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    Pending
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-file-invoice-dollar"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-check-circle"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Section -->
+            <div class="dashboard-section hidden" id="inventory-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Inventory Management</h1>
+                    
+                    <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Stock Summary</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="space-y-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Total Titles in Stock</p>
+                                        <p class="text-2xl font-semibold text-gray-900">24</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Total Copies in Warehouse</p>
+                                        <p class="text-2xl font-semibold text-gray-900">5,842</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-900">Low Stock Alerts</p>
+                                        <p class="text-2xl font-semibold text-red-600">3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white shadow rounded-lg overflow-hidden lg:col-span-2">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Current Inventory</h3>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SKU</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">In Stock</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reorder Level</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Digital Publishing</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">ADP-2023</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">245</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    In Stock
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-box-open"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-truck"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Section -->
+            <div class="dashboard-section hidden" id="marketing-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Marketing Campaigns</h1>
+                    
+                    <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Upcoming Events</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-primary-500 pl-4 py-1">
+                                        <p class="text-sm font-medium text-gray-900">Book Launch: Digital Future</p>
+                                        <p class="text-sm text-gray-500">June 25, 2023</p>
+                                    </div>
+                                    <div class="border-l-4 border-green-500 pl-4 py-1">
+                                        <p class="text-sm font-medium text-gray-900">Author Signing Event</p>
+                                        <p class="text-sm text-gray-500">July 10, 2023</p>
+                                    </div>
+                                    <div class="border-l-4 border-blue-500 pl-4 py-1">
+                                        <p class="text-sm font-medium text-gray-900">Webinar: Marketing for Authors</p>
+                                        <p class="text-sm text-gray-500">July 15, 2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white shadow rounded-lg overflow-hidden lg:col-span-2">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Active Campaigns</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> New Campaign
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Campaign</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Channel</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Results</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Summer Reading Sale</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Email, Social</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-01</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Active
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">+15% sales</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-chart-line"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div class="dashboard-section hidden" id="users-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Team Management</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Team Members</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add User
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                                            <i class="fas fa-user text-gray-500"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Admin User</div>
+                                                        <div class="text-sm text-gray-500">Administrator</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">admin@wenstech.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Today</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Active
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-edit"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900"><i class="fas fa-key"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div class="dashboard-section hidden" id="reports-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Analytics Reports</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Sales Analytics</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-calendar mr-2"></i> Date Range
+                                        </button>
+                                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-download mr-2"></i> Export
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                                    <div class="h-64 flex items-center justify-center bg-gray-50 rounded-md">
+                                        <p class="text-gray-500">Sales trend chart would appear here</p>
+                                    </div>
+                                    <div class="h-64 flex items-center justify-center bg-gray-50 rounded-md">
+                                        <p class="text-gray-500">Revenue by region chart would appear here</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <h4 class="text-md font-medium text-gray-900">Top Performing Books</h4>
+                                    <div class="mt-2 overflow-x-auto">
+                                        <table class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sales</th>
+                                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-white divide-y divide-gray-200">
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Digital Publishing</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Writer</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">342</td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$8,302.58</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="dashboard-section hidden" id="settings-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">System Settings</h1>
+                    
+                    <div class="mt-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Company Configuration</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <form>
+                                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        <div>
+                                            <label for="company-name" class="block text-sm font-medium text-gray-700">Company Name</label>
+                                            <input type="text" id="company-name" value="WENSTECH PUBLISHERS" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                        <div>
+                                            <label for="base-currency" class="block text-sm font-medium text-gray-700">Base Currency</label>
+                                            <select id="base-currency" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option>USD - US Dollar</option>
+                                                <option>EUR - Euro</option>
+                                                <option>GBP - British Pound</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="timezone" class="block text-sm font-medium text-gray-700">Timezone</label>
+                                            <select id="timezone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option>(UTC-05:00) Eastern Time</option>
+                                                <option>(UTC-06:00) Central Time</option>
+                                                <option>(UTC-07:00) Mountain Time</option>
+                                                <option>(UTC-08:00) Pacific Time</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="royalty-rate" class="block text-sm font-medium text-gray-700">Default Royalty Rate (%)</label>
+                                            <input type="number" id="royalty-rate" value="15" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                    </div>
+                                    <div class="mt-8">
+                                        <h4 class="text-md font-medium text-gray-900">Integrations</h4>
+                                        <div class="mt-4 space-y-4">
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="amazon-integration" name="amazon-integration" type="checkbox" checked class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="amazon-integration" class="font-medium text-gray-700">Amazon KDP</label>
+                                                    <p class="text-gray-500">Sync book listings and sales data with Amazon</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="stripe-integration" name="stripe-integration" type="checkbox" class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="stripe-integration" class="font-medium text-gray-700">Stripe Payments</label>
+                                                    <p class="text-gray-500">Enable online payments through Stripe</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="flex items-center h-5">
+                                                    <input id="mailchimp-integration" name="mailchimp-integration" type="checkbox" checked class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300 rounded">
+                                                </div>
+                                                <div class="ml-3 text-sm">
+                                                    <label for="mailchimp-integration" class="font-medium text-gray-700">Mailchimp</label>
+                                                    <p class="text-gray-500">Connect with Mailchimp for email campaigns</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8 flex justify-end space-x-3">
+                                        <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Save Settings
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const dashboardSections = document.querySelectorAll('.dashboard-section');
+        
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            mobileSidebar.classList.toggle('hidden');
+        });
+        
+        // Navigation between sections
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                navLinks.forEach(navLink => {
+                    navLink.classList.remove('bg-primary-500', 'text-white');
+                    navLink.classList.add('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+                    const icon = navLink.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('text-white');
+                        icon.classList.add('text-gray-400', 'group-hover:text-gray-500');
+                    }
+                });
+                
+                // Add active class to clicked link
+                link.classList.remove('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+                link.classList.add('bg-primary-500', 'text-white');
+                const icon = link.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('text-gray-400', 'group-hover:text-gray-500');
+                    icon.classList.add('text-white');
+                }
+                
+                // Hide all sections
+                dashboardSections.forEach(section => section.classList.add('hidden'));
+                
+                // Show the selected section
+                const sectionId = link.getAttribute('data-section') + '-section';
+                document.getElementById(sectionId).classList.remove('hidden');
+                
+                // Update page title
+                document.getElementById('page-title').textContent = link.textContent.trim();
+                
+                // Close mobile sidebar
+                document.getElementById('mobile-sidebar').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WENSTECH PUBLISHERS - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 500: '#4F46E5', 600: '#4338CA' },
+                        secondary: { 500: '#10B981', 600: '#059669' },
+                        danger: { 500: '#EF4444', 600: '#DC2626' },
+                        warning: { 500: '#F59E0B', 600: '#D97706' },
+                        info: { 500: '#3B82F6', 600: '#2563EB' },
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #E5E7EB #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #E5E7EB;
+            border-radius: 4px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .multi-select-dropdown {
+            height: auto;
+            min-height: 42px;
+        }
+        .multi-select-dropdown option {
+            padding: 8px 12px;
+        }
+        [multiple] {
+            background-image: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar (unchanged from your original code) -->
+        <div id="sidebar" class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary-500 text-white font-bold">W</div>
+                        <span class="ml-3 font-bold text-lg">WENSTECH PUBLISHERS</span>
+                    </div>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <div class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Dashboard</div>
+                        <a href="#" data-section="overview" class="nav-link bg-primary-500 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-tachometer-alt mr-3 text-white"></i>Overview</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Content Management</div>
+                        <a href="#" data-section="books" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-book mr-3 text-gray-400 group-hover:text-gray-500"></i>Books & Catalog</a>
+                        <a href="#" data-section="authors" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-user-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>Author Management</a>
+                        <a href="#" data-section="manuscripts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-file-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>Manuscript Workflow</a>
+                        <a href="#" data-section="editing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>Editing & Production</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Sales & Distribution</div>
+                        <a href="#" data-section="inventory" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-boxes mr-3 text-gray-400 group-hover:text-gray-500"></i>Inventory</a>
+                        <a href="#" data-section="sales" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-chart-line mr-3 text-gray-400 group-hover:text-gray-500"></i>Sales & Royalties</a>
+                        <a href="#" data-section="marketing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-bullhorn mr-3 text-gray-400 group-hover:text-gray-500"></i>Marketing</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Administration</div>
+                        <a href="#" data-section="users" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-users-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>User Management</a>
+                        <a href="#" data-section="analytics" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-chart-pie mr-3 text-gray-400 group-hover:text-gray-500"></i>Analytics</a>
+                        <a href="#" data-section="contracts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-file-contract mr-3 text-gray-400 group-hover:text-gray-500"></i>Contracts</a>
+                        <a href="#" data-section="calendar" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-calendar-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>Calendar</a>
+                        <a href="#" data-section="settings" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>Settings</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar (unchanged, included for completeness) -->
+        <div id="mobile-sidebar" class="fixed inset-0 z-40 md:hidden hidden">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-overlay"></div>
+            <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+                <div class="absolute top-0 right-0 -mr-14 p-1">
+                    <button id="close-mobile-sidebar" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
+                        <i class="fas fa-times text-white text-xl"></i>
+                    </button>
+                </div>
+                <!-- Mobile sidebar nav (same as desktop sidebar) -->
+                <div class="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary-500 text-white font-bold">W</div>
+                        <span class="ml-3 font-bold text-lg">WENSTECH PUBLISHERS</span>
+                    </div>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <!-- Same nav structure as desktop sidebar -->
+                        <div class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Dashboard</div>
+                        <a href="#" data-section="overview" class="nav-link bg-primary-500 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-tachometer-alt mr-3 text-white"></i>Overview</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Content Management</div>
+                        <a href="#" data-section="books" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-book mr-3 text-gray-400 group-hover:text-gray-500"></i>Books & Catalog</a>
+                        <a href="#" data-section="authors" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-user-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>Author Management</a>
+                        <a href="#" data-section="manuscripts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-file-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>Manuscript Workflow</a>
+                        <a href="#" data-section="editing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>Editing & Production</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Sales & Distribution</div>
+                        <a href="#" data-section="inventory" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-boxes mr-3 text-gray-400 group-hover:text-gray-500"></i>Inventory</a>
+                        <a href="#" data-section="sales" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-chart-line mr-3 text-gray-400 group-hover:text-gray-500"></i>Sales & Royalties</a>
+                        <a href="#" data-section="marketing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-bullhorn mr-3 text-gray-400 group-hover:text-gray-500"></i>Marketing</a>
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Administration</div>
+                        <a href="#" data-section="users" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-users-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>User Management</a>
+                        <a href="#" data-section="analytics" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-chart-pie mr-3 text-gray-400 group-hover:text-gray-500"></i>Analytics</a>
+                        <a href="#" data-section="contracts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-file-contract mr-3 text-gray-400 group-hover:text-gray-500"></i>Contracts</a>
+                        <a href="#" data-section="calendar" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-calendar-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>Calendar</a>
+                        <a href="#" data-section="settings" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><i class="fas fa-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>Settings</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto focus:outline-none">
+            <div class="sticky top-0 z-10 bg-white shadow-sm">
+                <div class="flex items-center justify-between h-16 px-4 sm:px-6">
+                    <button id="mobile-menu-button" class="md:hidden text-gray-500 hover:text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 id="page-title" class="text-xl font-bold text-gray-900">Dashboard Overview</h1>
+                    <div class="flex items-center">
+                        <span class="text-sm font-medium text-gray-700">Admin User</span>
+                        <div class="ml-3 flex items-center justify-center h-8 w-8 rounded-full bg-primary-500 text-white cursor-pointer">
+                            <i class="fas fa-user text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <div class="dashboard-section" id="overview-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-primary-500 rounded-md p-3">
+                                        <i class="fas fa-book text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Total Books Published</dt>
+                                            <dd><div class="text-2xl font-semibold text-gray-900">125</div></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-green-600"><i class="fas fa-arrow-up"></i> 12% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-secondary-500 rounded-md p-3">
+                                        <i class="fas fa-user-edit text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Active Authors</dt>
+                                            <dd><div class="text-2xl font-semibold text-gray-900">45</div></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-green-600"><i class="fas fa-arrow-up"></i> 5% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-warning-500 rounded-md p-3">
+                                        <i class="fas fa-dollar-sign text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Monthly Sales</dt>
+                                            <dd><div class="text-2xl font-semibold text-gray-900">$12,500</div></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-red-600"><i class="fas fa-arrow-down"></i> 3% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="px-4 py-5 sm:p-6">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 bg-info-500 rounded-md p-3">
+                                        <i class="fas fa-file-alt text-white text-xl"></i>
+                                    </div>
+                                    <div class="ml-5 w-0 flex-1">
+                                        <dl>
+                                            <dt class="text-sm font-medium text-gray-500 truncate">Pending Manuscripts</dt>
+                                            <dd><div class="text-2xl font-semibold text-gray-900">8</div></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <span class="text-sm font-medium text-green-600"><i class="fas fa-arrow-up"></i> 8% from last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Books Table -->
+                <div class="px-4 pb-6 sm:px-6">
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Recent Books</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-book-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Book
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Formats</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Published Date</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="recent-books-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Publishing</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jane Doe</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Published</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Print, eBook</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-05-15</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recent Manuscripts Table -->
+                <div class="px-4 pb-6 sm:px-6">
+                    <div class="bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Recent Manuscript Submissions</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-manuscript-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Manuscript
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted Date</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="recent-manuscripts-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Future of Print</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Emily Johnson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Under Review</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Editor 1</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Review"><i class="fas fa-search"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Assign"><i class="fas fa-user-tag"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Update Status"><i class="fas fa-exchange-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books & Catalog Section -->
+            <div class="dashboard-section hidden" id="books-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Book & Catalog Management</h1>
+                    <div class="border-b border-gray-200 mt-6">
+                        <nav class="-mb-px flex space-x-8">
+                            <a href="#" data-tab="all-books" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">All Books</a>
+                            <a href="#" data-tab="book-series" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Series & Collections</a>
+                        </nav>
+                    </div>
+                </div>
+                <!-- All Books Tab Content -->
+                <div class="tab-content active" id="all-books-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">All Books</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-download mr-2"></i> Export
+                                        </button>
+                                        <button id="add-book-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Book
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cover</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ISBN</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="all-books-table">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap"><div class="w-10 h-15 bg-gray-100 flex items-center justify-center"><i class="fas fa-book text-gray-400"></i></div></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Digital Marketing for Authors</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Smith</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">978-0987654321</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Marketing</td>
+                                            <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Published</span></td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                                <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Book Series Tab Content -->
+                <div class="tab-content hidden" id="book-series-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Book Series & Collections</h3>
+                                    <div class="flex space-x-3">
+                                        <button id="add-series-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Series
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Series Name</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number of Books</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="series-table">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Leadership Series</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Business</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                                <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author Management Section -->
+            <div class="dashboard-section hidden" id="authors-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Author Management</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">All Authors</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-author-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Author
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Books</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="authors-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jane Doe</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Standard</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                            <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manuscript Workflow Section -->
+            <div class="dashboard-section hidden" id="manuscripts-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Manuscript Workflow</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Manuscripts</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-manuscript-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Manuscript
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="manuscripts-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Self-Publishing Guide</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Michael Brown</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Submitted</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Review"><i class="fas fa-search"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Assign"><i class="fas fa-user-tag"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editing & Production Section -->
+            <div class="dashboard-section hidden" id="editing-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Editing & Production</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Production Tasks</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-task-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Task
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Task</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="tasks-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Copy Editing</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">The Art of Publishing</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Editor 1</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">In Progress</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Section -->
+            <div class="dashboard-section hidden" id="inventory-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Inventory Management</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Inventory</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-inventory-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Inventory
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Format</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="inventory-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">The Art of Publishing</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Print</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales & Royalties Section -->
+            <div class="dashboard-section hidden" id="sales-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Sales & Royalties</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Sales Overview</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Units Sold</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Royalties</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="sales-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Digital Marketing for Authors</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">John Smith</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$1,500</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Section -->
+            <div class="dashboard-section hidden" id="marketing-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Marketing Campaigns</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Active Campaigns</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-campaign-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Campaign
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Campaign Name</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="campaigns-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Summer Promo</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">The Art of Publishing</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <div class="dashboard-section hidden" id="users-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">User Management</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Users</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-user-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add User
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="users-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Admin User</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Administrator</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Section -->
+            <div class="dashboard-section hidden" id="analytics-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Analytics</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Performance Metrics</h3>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <p class="text-sm text-gray-500">Analytics data visualization would go here (e.g., charts, graphs).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contracts Section -->
+            <div class="dashboard-section hidden" id="contracts-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Contracts</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Contracts</h3>
+                                <div class="flex space-x-3">
+                                    <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-filter mr-2"></i> Filter
+                                    </button>
+                                    <button id="add-contract-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                        <i class="fas fa-plus mr-2"></i> Add Contract
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="contracts-table">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Jane Doe</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Standard</td>
+                                        <td class="px-6 py-4 whitespace-nowrap"><span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                            <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="dashboard-section hidden" id="calendar-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Calendar</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Events</h3>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <p class="text-sm text-gray-500">Calendar view would go here (e.g., FullCalendar.js integration).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="dashboard-section hidden" id="settings-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Settings</h1>
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">System Settings</h3>
+                        </div>
+                        <div class="px-4 py-5 sm:p-6">
+                            <button id="update-settings-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-cog mr-2"></i> Update Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <!-- Add Book Modal -->
+        <div id="add-book-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Book</h3>
+                                <div class="mt-4">
+                                    <form id="modal-book-form">
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label for="modal-book-title" class="block text-sm font-medium text-gray-700">Title *</label>
+                                                <input type="text" id="modal-book-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-author" class="block text-sm font-medium text-gray-700">Author *</label>
+                                                <select id="modal-book-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                    <option value="">Select Author</option>
+                                                    <option value="1">Jane Doe</option>
+                                                    <option value="2">John Smith</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-isbn" class="block text-sm font-medium text-gray-700">ISBN</label>
+                                                <input type="text" id="modal-book-isbn" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-genre" class="block text-sm font-medium text-gray-700">Genre *</label>
+                                                <select id="modal-book-genre" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                    <option value="">Select Genre</option>
+                                                    <option value="Fiction">Fiction</option>
+                                                    <option value="Non-Fiction">Non-Fiction</option>
+                                                    <option value="Science Fiction">Science Fiction</option>
+                                                    <option value="Fantasy">Fantasy</option>
+                                                    <option value="Mystery">Mystery</option>
+                                                    <option value="Romance">Romance</option>
+                                                    <option value="Thriller">Thriller</option>
+                                                    <option value="Biography">Biography</option>
+                                                    <option value="Self-Help">Self-Help</option>
+                                                    <option value="Business">Business</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                                <select id="modal-book-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                    <option value="Draft">Draft</option>
+                                                    <option value="In Production">In Production</option>
+                                                    <option value="Published">Published</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-formats" class="block text-sm font-medium text-gray-700">Formats</label>
+                                                <select id="modal-book-formats" multiple class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm multi-select-dropdown">
+                                                    <option value="Print">Print</option>
+                                                    <option value="eBook">eBook</option>
+                                                    <option value="Audiobook">Audiobook</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-synopsis" class="block text-sm font-medium text-gray-700">Synopsis</label>
+                                                <textarea id="modal-book-synopsis" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"></textarea>
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-cover" class="block text-sm font-medium text-gray-700">Cover Image</label>
+                                                <input type="file" id="modal-book-cover" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                                            </div>
+                                            <div>
+                                                <label for="modal-book-sample" class="block text-sm font-medium text-gray-700">Sample Chapter</label>
+                                                <input type="file" id="modal-book-sample" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button id="save-book-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                            Save Book
+                        </button>
+                        <button id="cancel-book-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Author Modal (continued) -->
+<div id="add-author-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Author</h3>
+                        <div class="mt-4">
+                            <form id="modal-author-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-author-name" class="block text-sm font-medium text-gray-700">Name *</label>
+                                        <input type="text" id="modal-author-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-author-bio" class="block text-sm font-medium text-gray-700">Bio</label>
+                                        <textarea id="modal-author-bio" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"></textarea>
+                                    </div>
+                                    <div>
+                                        <label for="modal-author-contract" class="block text-sm font-medium text-gray-700">Contract Type *</label>
+                                        <select id="modal-author-contract" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Contract</option>
+                                            <option value="Standard">Standard</option>
+                                            <option value="Premium">Premium</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-author-headshot" class="block text-sm font-medium text-gray-700">Headshot</label>
+                                        <input type="file" id="modal-author-headshot" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-author-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Author
+                </button>
+                <button id="cancel-author-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Manuscript Modal -->
+<div id="add-manuscript-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Manuscript</h3>
+                        <div class="mt-4">
+                            <form id="modal-manuscript-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-manuscript-title" class="block text-sm font-medium text-gray-700">Title *</label>
+                                        <input type="text" id="modal-manuscript-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-manuscript-author" class="block text-sm font-medium text-gray-700">Author *</label>
+                                        <select id="modal-manuscript-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Author</option>
+                                            <option value="1">Jane Doe</option>
+                                            <option value="2">John Smith</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-manuscript-file" class="block text-sm font-medium text-gray-700">Manuscript File *</label>
+                                        <input type="file" id="modal-manuscript-file" required class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                                    </div>
+                                    <div>
+                                        <label for="modal-manuscript-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-manuscript-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Submitted">Submitted</option>
+                                            <option value="Under Review">Under Review</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-manuscript-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Manuscript
+                </button>
+                <button id="cancel-manuscript-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Task Modal (Editing & Production) -->
+<div id="add-task-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Task</h3>
+                        <div class="mt-4">
+                            <form id="modal-task-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-task-name" class="block text-sm font-medium text-gray-700">Task Name *</label>
+                                        <input type="text" id="modal-task-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-task-book" class="block text-sm font-medium text-gray-700">Book *</label>
+                                        <select id="modal-task-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Book</option>
+                                            <option value="1">The Art of Publishing</option>
+                                            <option value="2">Digital Marketing for Authors</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-task-assigned" class="block text-sm font-medium text-gray-700">Assigned To *</label>
+                                        <input type="text" id="modal-task-assigned" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-task-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-task-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Pending">Pending</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-task-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Task
+                </button>
+                <button id="cancel-task-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Inventory Modal -->
+<div id="add-inventory-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add Inventory Item</h3>
+                        <div class="mt-4">
+                            <form id="modal-inventory-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-inventory-book" class="block text-sm font-medium text-gray-700">Book Title *</label>
+                                        <select id="modal-inventory-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Book</option>
+                                            <option value="1">The Art of Publishing</option>
+                                            <option value="2">Digital Marketing for Authors</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-inventory-format" class="block text-sm font-medium text-gray-700">Format *</label>
+                                        <select id="modal-inventory-format" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Print">Print</option>
+                                            <option value="eBook">eBook</option>
+                                            <option value="Audiobook">Audiobook</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-inventory-stock" class="block text-sm font-medium text-gray-700">Stock Quantity *</label>
+                                        <input type="number" id="modal-inventory-stock" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-inventory-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Inventory
+                </button>
+                <button id="cancel-inventory-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Campaign Modal (Marketing) -->
+<div id="add-campaign-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Campaign</h3>
+                        <div class="mt-4">
+                            <form id="modal-campaign-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-campaign-name" class="block text-sm font-medium text-gray-700">Campaign Name *</label>
+                                        <input type="text" id="modal-campaign-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-campaign-book" class="block text-sm font-medium text-gray-700">Book *</label>
+                                        <select id="modal-campaign-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Book</option>
+                                            <option value="1">The Art of Publishing</option>
+                                            <option value="2">Digital Marketing for Authors</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-campaign-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-campaign-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Draft">Draft</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-campaign-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Campaign
+                </button>
+                <button id="cancel-campaign-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div id="add-user-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New User</h3>
+                        <div class="mt-4">
+                            <form id="modal-user-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-user-name" class="block text-sm font-medium text-gray-700">Name *</label>
+                                        <input type="text" id="modal-user-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-user-email" class="block text-sm font-medium text-gray-700">Email *</label>
+                                        <input type="email" id="modal-user-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-user-role" class="block text-sm font-medium text-gray-700">Role *</label>
+                                        <select id="modal-user-role" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Role</option>
+                                            <option value="Administrator">Administrator</option>
+                                            <option value="Editor">Editor</option>
+                                            <option value="Marketing">Marketing</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-user-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-user-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-user-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save User
+                </button>
+                <button id="cancel-user-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Contract Modal -->
+<div id="add-contract-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Contract</h3>
+                        <div class="mt-4">
+                            <form id="modal-contract-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-contract-author" class="block text-sm font-medium text-gray-700">Author *</label>
+                                        <select id="modal-contract-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Author</option>
+                                            <option value="1">Jane Doe</option>
+                                            <option value="2">John Smith</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-contract-type" class="block text-sm font-medium text-gray-700">Contract Type *</label>
+                                        <select id="modal-contract-type" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Type</option>
+                                            <option value="Standard">Standard</option>
+                                            <option value="Premium">Premium</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-contract-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-contract-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Active">Active</option>
+                                            <option value="Expired">Expired</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-contract-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Contract
+                </button>
+                <button id="cancel-contract-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Series Modal (Books & Catalog) -->
+<div id="add-series-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Series</h3>
+                        <div class="mt-4">
+                            <form id="modal-series-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-series-name" class="block text-sm font-medium text-gray-700">Series Name *</label>
+                                        <input type="text" id="modal-series-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-series-genre" class="block text-sm font-medium text-gray-700">Genre *</label>
+                                        <select id="modal-series-genre" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Genre</option>
+                                            <option value="Fiction">Fiction</option>
+                                            <option value="Non-Fiction">Non-Fiction</option>
+                                            <option value="Business">Business</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-series-books" class="block text-sm font-medium text-gray-700">Books</label>
+                                        <select id="modal-series-books" multiple class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm multi-select-dropdown">
+                                            <option value="1">The Art of Publishing</option>
+                                            <option value="2">Digital Marketing for Authors</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-series-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Series
+                </button>
+                <button id="cancel-series-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update Settings Modal -->
+<div id="update-settings-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Update Settings</h3>
+                        <div class="mt-4">
+                            <form id="modal-settings-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-settings-theme" class="block text-sm font-medium text-gray-700">Theme</label>
+                                        <select id="modal-settings-theme" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Light">Light</option>
+                                            <option value="Dark">Dark</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-settings-notifications" class="block text-sm font-medium text-gray-700">Notifications</label>
+                                        <select id="modal-settings-notifications" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="On">On</option>
+                                            <option value="Off">Off</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-settings-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Settings
+                </button>
+                <button id="cancel-settings-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // DOM Elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMobileSidebar = document.getElementById('close-mobile-sidebar');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const dashboardSections = document.querySelectorAll('.dashboard-section');
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Modal buttons
+    const addBookBtn = document.getElementById('add-book-btn');
+    const addAuthorBtn = document.getElementById('add-author-btn');
+    const addManuscriptBtn = document.getElementById('add-manuscript-btn');
+    const addTaskBtn = document.getElementById('add-task-btn');
+    const addInventoryBtn = document.getElementById('add-inventory-btn');
+    const addCampaignBtn = document.getElementById('add-campaign-btn');
+    const addUserBtn = document.getElementById('add-user-btn');
+    const addContractBtn = document.getElementById('add-contract-btn');
+    const addSeriesBtn = document.getElementById('add-series-btn');
+    const updateSettingsBtn = document.getElementById('update-settings-btn');
+
+    // Modals
+    const addBookModal = document.getElementById('add-book-modal');
+    const addAuthorModal = document.getElementById('add-author-modal');
+    const addManuscriptModal = document.getElementById('add-manuscript-modal');
+    const addTaskModal = document.getElementById('add-task-modal');
+    const addInventoryModal = document.getElementById('add-inventory-modal');
+    const addCampaignModal = document.getElementById('add-campaign-modal');
+    const addUserModal = document.getElementById('add-user-modal');
+    const addContractModal = document.getElementById('add-contract-modal');
+    const addSeriesModal = document.getElementById('add-series-modal');
+    const updateSettingsModal = document.getElementById('update-settings-modal');
+
+    // Cancel buttons
+    const cancelBookModal = document.getElementById('cancel-book-modal');
+    const cancelAuthorModal = document.getElementById('cancel-author-modal');
+    const cancelManuscriptModal = document.getElementById('cancel-manuscript-modal');
+    const cancelTaskModal = document.getElementById('cancel-task-modal');
+    const cancelInventoryModal = document.getElementById('cancel-inventory-modal');
+    const cancelCampaignModal = document.getElementById('cancel-campaign-modal');
+    const cancelUserModal = document.getElementById('cancel-user-modal');
+    const cancelContractModal = document.getElementById('cancel-contract-modal');
+    const cancelSeriesModal = document.getElementById('cancel-series-modal');
+    const cancelSettingsModal = document.getElementById('cancel-settings-modal');
+
+    // Save buttons
+    const saveBookModal = document.getElementById('save-book-modal');
+    const saveAuthorModal = document.getElementById('save-author-modal');
+    const saveManuscriptModal = document.getElementById('save-manuscript-modal');
+    const saveTaskModal = document.getElementById('save-task-modal');
+    const saveInventoryModal = document.getElementById('save-inventory-modal');
+    const saveCampaignModal = document.getElementById('save-campaign-modal');
+    const saveUserModal = document.getElementById('save-user-modal');
+    const saveContractModal = document.getElementById('save-contract-modal');
+    const saveSeriesModal = document.getElementById('save-series-modal');
+    const saveSettingsModal = document.getElementById('save-settings-modal');
+
+    // Mobile menu toggle
+    mobileMenuButton.addEventListener('click', () => {
+        mobileSidebar.classList.remove('hidden');
+    });
+
+    closeMobileSidebar.addEventListener('click', () => {
+        mobileSidebar.classList.add('hidden');
+    });
+
+    sidebarOverlay.addEventListener('click', () => {
+        mobileSidebar.classList.add('hidden');
+    });
+
+    // Navigation between sections
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all links
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('bg-primary-500', 'text-white');
+                navLink.classList.add('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+                const icon = navLink.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('text-white');
+                    icon.classList.add('text-gray-400', 'group-hover:text-gray-500');
+                }
+            });
+
+            // Add active class to clicked link
+            link.classList.remove('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+            link.classList.add('bg-primary-500', 'text-white');
+            const icon = link.querySelector('i');
+            if (icon) {
+                icon.classList.remove('text-gray-400', 'group-hover:text-gray-500');
+                icon.classList.add('text-white');
+            }
+
+            // Hide all sections
+            dashboardSections.forEach(section => section.classList.add('hidden'));
+
+            // Show the selected section
+            const sectionId = link.getAttribute('data-section') + '-section';
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            // Update page title
+            document.getElementById('page-title').textContent = link.textContent.trim();
+
+            // Close mobile sidebar
+            mobileSidebar.classList.add('hidden');
+        });
+    });
+
+    // Tab functionality
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all tabs
+            tabs.forEach(t => {
+                t.classList.remove('border-primary-500', 'text-primary-600');
+                t.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            });
+
+            // Add active class to clicked tab
+            tab.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+            tab.classList.add('border-primary-500', 'text-primary-600');
+
+            // Hide all tab contents
+            tabContents.forEach(content => content.classList.add('hidden'));
+
+            // Show the selected tab content
+            const tabId = tab.getAttribute('data-tab') + '-tab';
+            document.getElementById(tabId).classList.remove('hidden');
+        });
+    });
+
+    // Modal open handlers
+    addBookBtn.addEventListener('click', () => addBookModal.classList.remove('hidden'));
+    addAuthorBtn.addEventListener('click', () => addAuthorModal.classList.remove('hidden'));
+    addManuscriptBtn.addEventListener('click', () => addManuscriptModal.classList.remove('hidden'));
+    addTaskBtn.addEventListener('click', () => addTaskModal.classList.remove('hidden'));
+    addInventoryBtn.addEventListener('click', () => addInventoryModal.classList.remove('hidden'));
+    addCampaignBtn.addEventListener('click', () => addCampaignModal.classList.remove('hidden'));
+    addUserBtn.addEventListener('click', () => addUserModal.classList.remove('hidden'));
+    addContractBtn.addEventListener('click', () => addContractModal.classList.remove('hidden'));
+    addSeriesBtn.addEventListener('click', () => addSeriesModal.classList.remove('hidden'));
+    updateSettingsBtn.addEventListener('click', () => updateSettingsModal.classList.remove('hidden'));
+
+    // Modal cancel handlers
+    cancelBookModal.addEventListener('click', () => {
+        addBookModal.classList.add('hidden');
+        document.getElementById('modal-book-form').reset();
+    });
+    cancelAuthorModal.addEventListener('click', () => {
+        addAuthorModal.classList.add('hidden');
+        document.getElementById('modal-author-form').reset();
+    });
+    cancelManuscriptModal.addEventListener('click', () => {
+        addManuscriptModal.classList.add('hidden');
+        document.getElementById('modal-manuscript-form').reset();
+    });
+    cancelTaskModal.addEventListener('click', () => {
+        addTaskModal.classList.add('hidden');
+        document.getElementById('modal-task-form').reset();
+    });
+    cancelInventoryModal.addEventListener('click', () => {
+        addInventoryModal.classList.add('hidden');
+        document.getElementById('modal-inventory-form').reset();
+    });
+    cancelCampaignModal.addEventListener('click', () => {
+        addCampaignModal.classList.add('hidden');
+        document.getElementById('modal-campaign-form').reset();
+    });
+    cancelUserModal.addEventListener('click', () => {
+        addUserModal.classList.add('hidden');
+        document.getElementById('modal-user-form').reset();
+    });
+    cancelContractModal.addEventListener('click', () => {
+        addContractModal.classList.add('hidden');
+        document.getElementById('modal-contract-form').reset();
+    });
+    cancelSeriesModal.addEventListener('click', () => {
+        addSeriesModal.classList.add('hidden');
+        document.getElementById('modal-series-form').reset();
+    });
+    cancelSettingsModal.addEventListener('click', () => {
+        updateSettingsModal.classList.add('hidden');
+        document.getElementById('modal-settings-form').reset();
+    });
+
+    // Modal save handlers (placeholder alerts since no backend/storage)
+    saveBookModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-book-form');
+        if (form.checkValidity()) {
+            alert('Book saved successfully!');
+            form.reset();
+            addBookModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveAuthorModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-author-form');
+        if (form.checkValidity()) {
+            alert('Author saved successfully!');
+            form.reset();
+            addAuthorModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveManuscriptModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-manuscript-form');
+        if (form.checkValidity()) {
+            alert('Manuscript saved successfully!');
+            form.reset();
+            addManuscriptModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveTaskModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-task-form');
+        if (form.checkValidity()) {
+            alert('Task saved successfully!');
+            form.reset();
+            addTaskModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveInventoryModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-inventory-form');
+        if (form.checkValidity()) {
+            alert('Inventory item saved successfully!');
+            form.reset();
+            addInventoryModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveCampaignModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-campaign-form');
+        if (form.checkValidity()) {
+            alert('Campaign saved successfully!');
+            form.reset();
+            addCampaignModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveUserModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-user-form');
+        if (form.checkValidity()) {
+            alert('User saved successfully!');
+            form.reset();
+            addUserModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveContractModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-contract-form');
+        if (form.checkValidity()) {
+            alert('Contract saved successfully!');
+            form.reset();
+            addContractModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveSeriesModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-series-form');
+        if (form.checkValidity()) {
+            alert('Series saved successfully!');
+            form.reset();
+            addSeriesModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    saveSettingsModal.addEventListener('click', () => {
+        const form = document.getElementById('modal-settings-form');
+        if (form.checkValidity()) {
+            alert('Settings updated successfully!');
+            form.reset();
+            updateSettingsModal.classList.add('hidden');
+        } else {
+            alert('Please fill all required fields.');
+        }
+    });
+
+    // Helper function for status badge classes
+    function getStatusBadgeClass(status) {
+        switch (status.toLowerCase()) {
+            case 'draft':
+                return 'bg-blue-100 text-blue-800';
+            case 'published':
+            case 'active':
+                return 'bg-green-100 text-green-800';
+            case 'in production':
+            case 'in progress':
+            case 'submitted':
+            case 'under review':
+                return 'bg-yellow-100 text-yellow-800';
+            default:
+                return 'bg-gray-100 text-gray-800';
+        }
+    }
+
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+        // No data loading since tables are static
+    });
+</script>
+</body>
+</html>

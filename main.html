@@ -1,0 +1,3110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WENSTECH PUBLISHERS - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            500: '#4F46E5',
+                            600: '#4338CA',
+                        },
+                        secondary: {
+                            500: '#10B981',
+                            600: '#059669',
+                        },
+                        danger: {
+                            500: '#EF4444',
+                            600: '#DC2626',
+                        },
+                        warning: {
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        },
+                        info: {
+                            500: '#3B82F6',
+                            600: '#2563EB',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles that Tailwind doesn't cover */
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #E5E7EB #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #F9FAFB;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #E5E7EB;
+            border-radius: 4px;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .multi-select-dropdown {
+            height: auto;
+            min-height: 42px;
+        }
+        .multi-select-dropdown option {
+            padding: 8px 12px;
+        }
+        [multiple] {
+            background-image: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-200 bg-white">
+                <div class="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary-500 text-white font-bold">
+                            W
+                        </div>
+                        <span class="ml-3 font-bold text-lg">WENSTECH PUBLISHERS</span>
+                    </div>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto sidebar">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <!-- Dashboard Section -->
+                        <div class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Dashboard
+                        </div>
+                        <a href="#" data-section="overview" class="nav-link bg-primary-500 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-tachometer-alt mr-3 text-white"></i>
+                            Overview
+                        </a>
+
+                        <!-- Content Management Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Content Management
+                        </div>
+                        <a href="#" data-section="books" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-book mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Books & Catalog
+                        </a>
+                        <a href="#" data-section="authors" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-user-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Author Management
+                        </a>
+                        <a href="#" data-section="manuscripts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Manuscript Workflow
+                        </a>
+                        <a href="#" data-section="editing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Editing & Production
+                        </a>
+
+                        <!-- Sales & Distribution Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Sales & Distribution
+                        </div>
+                        <a href="#" data-section="inventory" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-boxes mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Inventory
+                        </a>
+                        <a href="#" data-section="sales" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-line mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Sales & Royalties
+                        </a>
+                        <a href="#" data-section="marketing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-bullhorn mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Marketing
+                        </a>
+
+                        <!-- Administration Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Administration
+                        </div>
+                        <a href="#" data-section="users" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-users-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            User Management
+                        </a>
+                        <a href="#" data-section="analytics" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-pie mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Analytics
+                        </a>
+                        <a href="#" data-section="contracts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-contract mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Contracts
+                        </a>
+                        <a href="#" data-section="calendar" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-calendar-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Calendar
+                        </a>
+                        <a href="#" data-section="settings" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile sidebar -->
+        <div id="mobile-sidebar" class="fixed inset-0 z-40 md:hidden hidden">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" id="sidebar-overlay"></div>
+            <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+                <div class="absolute top-0 right-0 -mr-14 p-1">
+                    <button id="close-mobile-sidebar" class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600">
+                        <i class="fas fa-times text-white text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex items-center h-16 flex-shrink-0 px-4 border-b border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-md bg-primary-500 text-white font-bold">
+                            W
+                        </div>
+                        <span class="ml-3 font-bold text-lg">WENSTECH PUBLISHERS</span>
+                    </div>
+                </div>
+                <div class="h-0 flex-1 flex flex-col overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <!-- Dashboard Section -->
+                        <div class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Dashboard
+                        </div>
+                        <a href="#" data-section="overview" class="nav-link bg-primary-500 text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-tachometer-alt mr-3 text-white"></i>
+                            Overview
+                        </a>
+
+                        <!-- Content Management Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Content Management
+                        </div>
+                        <a href="#" data-section="books" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-book mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Books & Catalog
+                        </a>
+                        <a href="#" data-section="authors" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-user-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Author Management
+                        </a>
+                        <a href="#" data-section="manuscripts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Manuscript Workflow
+                        </a>
+                        <a href="#" data-section="editing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-edit mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Editing & Production
+                        </a>
+
+                        <!-- Sales & Distribution Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Sales & Distribution
+                        </div>
+                        <a href="#" data-section="inventory" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-boxes mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Inventory
+                        </a>
+                        <a href="#" data-section="sales" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-line mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Sales & Royalties
+                        </a>
+                        <a href="#" data-section="marketing" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-bullhorn mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Marketing
+                        </a>
+
+                        <!-- Administration Section -->
+                        <div class="px-3 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            Administration
+                        </div>
+                        <a href="#" data-section="users" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-users-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            User Management
+                        </a>
+                        <a href="#" data-section="analytics" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-chart-pie mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Analytics
+                        </a>
+                        <a href="#" data-section="contracts" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-file-contract mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Contracts
+                        </a>
+                        <a href="#" data-section="calendar" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-calendar-alt mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Calendar
+                        </a>
+                        <a href="#" data-section="settings" class="nav-link text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                            <i class="fas fa-cog mr-3 text-gray-400 group-hover:text-gray-500"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto focus:outline-none">
+            <div class="sticky top-0 z-10 bg-white shadow-sm">
+                <div class="flex items-center justify-between h-16 px-4 sm:px-6">
+                    <button id="mobile-menu-button" class="md:hidden text-gray-500 hover:text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h1 id="page-title" class="text-xl font-bold text-gray-900">Dashboard Overview</h1>
+                    <div class="flex items-center">
+                        <span class="text-sm font-medium text-gray-700">Admin User</span>
+                        <div class="ml-3 flex items-center justify-center h-8 w-8 rounded-full bg-primary-500 text-white cursor-pointer">
+                            <i class="fas fa-user text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+<div class="dashboard-section" id="overview-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+            <!-- Total Books Published Card -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-3 py-4 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-primary-500 rounded-md p-2 sm:p-3">
+                            <i class="fas fa-book text-white text-lg sm:text-xl"></i>
+                        </div>
+                        <div class="ml-3 sm:ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-xs sm:text-sm font-medium text-gray-500 truncate">
+                                    Total Books Published
+                                </dt>
+                                <dd>
+                                    <div class="text-xl sm:text-2xl font-semibold text-gray-900" id="total-books">0</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4">
+                        <span class="text-xs sm:text-sm font-medium text-green-600">
+                            <i class="fas fa-arrow-up"></i> 12% from last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Authors Card -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-3 py-4 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-secondary-500 rounded-md p-2 sm:p-3">
+                            <i class="fas fa-user-edit text-white text-lg sm:text-xl"></i>
+                        </div>
+                        <div class="ml-3 sm:ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-xs sm:text-sm font-medium text-gray-500 truncate">
+                                    Active Authors
+                                </dt>
+                                <dd>
+                                    <div class="text-xl sm:text-2xl font-semibold text-gray-900" id="total-authors">0</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4">
+                        <span class="text-xs sm:text-sm font-medium text-green-600">
+                            <i class="fas fa-arrow-up"></i> 5% from last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Sales Card -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-3 py-4 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-warning-500 rounded-md p-2 sm:p-3">
+                            <i class="fas fa-dollar-sign text-white text-lg sm:text-xl"></i>
+                        </div>
+                        <div class="ml-3 sm:ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-xs sm:text-sm font-medium text-gray-500 truncate">
+                                    Monthly Sales
+                                </dt>
+                                <dd>
+                                    <div class="text-xl sm:text-2xl font-semibold text-gray-900">SH.<span id="monthly-sales">0</span></div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4">
+                        <span class="text-xs sm:text-sm font-medium text-red-600">
+                            <i class="fas fa-arrow-down"></i> 3% from last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Manuscripts Card -->
+            <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="px-3 py-4 sm:p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-info-500 rounded-md p-2 sm:p-3">
+                            <i class="fas fa-file-alt text-white text-lg sm:text-xl"></i>
+                        </div>
+                        <div class="ml-3 sm:ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-xs sm:text-sm font-medium text-gray-500 truncate">
+                                    Pending Manuscripts
+                                </dt>
+                                <dd>
+                                    <div class="text-xl sm:text-2xl font-semibold text-gray-900" id="pending-manuscripts">0</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="mt-3 sm:mt-4">
+                        <span class="text-xs sm:text-sm font-medium text-green-600">
+                            <i class="fas fa-arrow-up"></i> 8% from last month
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Books Table -->
+    <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Recent Books</h3>
+                    <div class="flex space-x-2 sm:space-x-3">
+                        <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                        </button>
+                        <button id="add-book-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Book
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Formats</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Published Date</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200" id="recent-books-table">
+                        <!-- Books will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Manuscripts Table -->
+    <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Recent Manuscript Submissions</h3>
+                    <div class="flex space-x-2 sm:space-x-3">
+                        <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                            <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted Date</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                            <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200" id="recent-manuscripts-table">
+                        <!-- Manuscripts will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Books Section -->
+<div class="dashboard-section hidden" id="books-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Book & Catalog Management</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="all-books" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    All Books
+                </a>
+                <a href="#" data-tab="add-book" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Book
+                </a>
+                <a href="#" data-tab="book-series" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Series & Collections
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Books Tab Content -->
+    <div class="tab-content active" id="all-books-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">All Books</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-download mr-1 sm:mr-2"></i> Export
+                            </button>
+                            <button id="add-new-book-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Book
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cover</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ISBN</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-books-table">
+                            <!-- All books will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Book Tab Content -->
+    <div class="tab-content hidden" id="add-book-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Book</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-book-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="book-title" class="block text-xs sm:text-sm font-medium text-gray-700">Title *</label>
+                                <input type="text" id="book-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-author" class="block text-xs sm:text-sm font-medium text-gray-700">Author *</label>
+                                <select id="book-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Author</option>
+                                    <!-- Authors will be populated here -->
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-isbn" class="block text-xs sm:text-sm font-medium text-gray-700">ISBN</label>
+                                <input type="text" id="book-isbn" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-genre" class="block text-xs sm:text-sm font-medium text-gray-700">Genre *</label>
+                                <select id="book-genre" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Genre</option>
+                                    <option value="Fiction">Fiction</option>
+                                    <option value="Non-Fiction">Non-Fiction</option>
+                                    <option value="Science Fiction">Science Fiction</option>
+                                    <option value="Fantasy">Fantasy</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Biography">Biography</option>
+                                    <option value="Self-Help">Self-Help</option>
+                                    <option value="Business">Business</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-status" class="block text-xs sm:text-sm font-medium text-gray-700">Status *</label>
+                                <select id="book-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="Draft">Draft</option>
+                                    <option value="In Production">In Production</option>
+                                    <option value="Published">Published</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-formats" class="block text-xs sm:text-sm font-medium text-gray-700">Formats</label>
+                                <select id="book-formats" multiple class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm multi-select-dropdown">
+                                    <option value="Print">Print</option>
+                                    <option value="eBook">eBook</option>
+                                    <option value="Audiobook">Audiobook</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="book-synopsis" class="block text-xs sm:text-sm font-medium text-gray-700">Synopsis</label>
+                                <textarea id="book-synopsis" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm"></textarea>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-cover" class="block text-xs sm:text-sm font-medium text-gray-700">Cover Image</label>
+                                <input type="file" id="book-cover" accept="image/*" class="mt-1 block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-md file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="book-sample" class="block text-xs sm:text-sm font-medium text-gray-700">Sample Chapter</label>
+                                <input type="file" id="book-sample" class="mt-1 block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-md file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Book
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Series Tab Content -->
+    <div class="tab-content hidden" id="book-series-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Book Series & Collections</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button id="add-series-btn" class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Series
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Series Name</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number of Books</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="series-table">
+                            <!-- Series will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Authors Section -->
+<div class="dashboard-section hidden" id="authors-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Author Management</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="all-authors" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    All Authors
+                </a>
+                <a href="#" data-tab="add-author" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Author
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Authors Tab Content -->
+    <div class="tab-content active" id="all-authors-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">All Authors</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-download mr-1 sm:mr-2"></i> Export
+                            </button>
+                            <button id="add-new-author-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Author
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Books</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract Type</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-authors-table">
+                            <!-- Authors will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Author Tab Content -->
+    <div class="tab-content hidden" id="add-author-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Author</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-author-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="author-name" class="block text-xs sm:text-sm font-medium text-gray-700">Name *</label>
+                                <input type="text" id="author-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="author-email" class="block text-xs sm:text-sm font-medium text-gray-700">Email *</label>
+                                <input type="email" id="author-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="author-bio" class="block text-xs sm:text-sm font-medium text-gray-700">Bio</label>
+                                <textarea id="author-bio" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm"></textarea>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="author-contract" class="block text-xs sm:text-sm font-medium text-gray-700">Contract Type *</label>
+                                <select id="author-contract" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Contract</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Premium">Premium</option>
+                                    <option value="Exclusive">Exclusive</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="author-status" class="block text-xs sm:text-sm font-medium text-gray-700">Status *</label>
+                                <select id="author-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="author-headshot" class="block text-xs sm:text-sm font-medium text-gray-700">Headshot</label>
+                                <input type="file" id="author-headshot" accept="image/*" class="mt-1 block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-md file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Author
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Manuscripts Section -->
+<div class="dashboard-section hidden" id="manuscripts-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Manuscript Workflow</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="all-manuscripts" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    All Manuscripts
+                </a>
+                <a href="#" data-tab="add-manuscript" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Manuscript
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Manuscripts Tab Content -->
+    <div class="tab-content active" id="all-manuscripts-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">All Manuscripts</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button id="add-new-manuscript-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Manuscript
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted Date</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned To</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-manuscripts-table">
+                            <!-- Manuscripts will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Manuscript Tab Content -->
+    <div class="tab-content hidden" id="add-manuscript-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Manuscript</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-manuscript-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="manuscript-title" class="block text-xs sm:text-sm font-medium text-gray-700">Title *</label>
+                                <input type="text" id="manuscript-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="manuscript-author" class="block text-xs sm:text-sm font-medium text-gray-700">Author *</label>
+                                <select id="manuscript-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Author</option>
+                                    <!-- Authors will be populated here -->
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="manuscript-status" class="block text-xs sm:text-sm font-medium text-gray-700">Status *</label>
+                                <select id="manuscript-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="Submitted">Submitted</option>
+                                    <option value="Under Review">Under Review</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="manuscript-assigned-to" class="block text-xs sm:text-sm font-medium text-gray-700">Assigned To</label>
+                                <input type="text" id="manuscript-assigned-to" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="manuscript-file" class="block text-xs sm:text-sm font-medium text-gray-700">Manuscript File *</label>
+                                <input type="file" id="manuscript-file" required class="mt-1 block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-md file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Manuscript
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Editing & Production Section -->
+            <div class="dashboard-section hidden" id="editing-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Editing & Production</h1>
+                    
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 mt-6">
+                        <nav class="-mb-px flex space-x-8">
+                            <a href="#" data-tab="all-editing" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                All Projects
+                            </a>
+                            <a href="#" data-tab="add-editing" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                Add New Project
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- All Editing Projects Tab Content -->
+                <div class="tab-content active" id="all-editing-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">All Editing Projects</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button id="add-new-editing-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Project
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Editor</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stage</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="all-editing-table">
+                                        <!-- Editing projects will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Editing Project Tab Content -->
+                <div class="tab-content hidden" id="add-editing-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Add New Editing Project</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <form id="add-editing-form">
+                                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        <div class="col-span-1">
+                                            <label for="editing-book" class="block text-sm font-medium text-gray-700">Book *</label>
+                                            <select id="editing-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option value="">Select Book</option>
+                                                <!-- Books will be populated here -->
+                                            </select>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="editing-editor" class="block text-sm font-medium text-gray-700">Editor *</label>
+                                            <input type="text" id="editing-editor" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="editing-stage" class="block text-sm font-medium text-gray-700">Stage *</label>
+                                            <select id="editing-stage" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option value="Developmental Editing">Developmental Editing</option>
+                                                <option value="Copy Editing">Copy Editing</option>
+                                                <option value="Proofreading">Proofreading</option>
+                                                <option value="Production">Production</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="editing-deadline" class="block text-sm font-medium text-gray-700">Deadline *</label>
+                                            <input type="date" id="editing-deadline" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="editing-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                            <select id="editing-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option value="In Progress">In Progress</option>
+                                                <option value="Completed">Completed</option>
+                                                <option value="Pending">Pending</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8 flex justify-end space-x-3">
+                                        <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Save Project
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Section -->
+            <div class="dashboard-section hidden" id="inventory-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Inventory Management</h1>
+                    
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 mt-6">
+                        <nav class="-mb-px flex space-x-8">
+                            <a href="#" data-tab="all-inventory" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                All Inventory
+                            </a>
+                            <a href="#" data-tab="add-inventory" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                Add New Inventory
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- All Inventory Tab Content -->
+                <div class="tab-content active" id="all-inventory-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">All Inventory</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button id="add-new-inventory-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-plus mr-2"></i> Add Inventory
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Format</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="all-inventory-table">
+                                        <!-- Inventory will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Inventory Tab Content -->
+                <div class="tab-content hidden" id="add-inventory-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Add New Inventory</h3>
+                            </div>
+                            <div class="px-4 py-5 sm:p-6">
+                                <form id="add-inventory-form">
+                                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                                        <div class="col-span-1">
+                                            <label for="inventory-book" class="block text-sm font-medium text-gray-700">Book *</label>
+                                            <select id="inventory-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option value="">Select Book</option>
+                                                <!-- Books will be populated here -->
+                                            </select>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="inventory-format" class="block text-sm font-medium text-gray-700">Format *</label>
+                                            <select id="inventory-format" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                                <option value="Print">Print</option>
+                                                <option value="eBook">eBook</option>
+                                                <option value="Audiobook">Audiobook</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="inventory-quantity" class="block text-sm font-medium text-gray-700">Quantity *</label>
+                                            <input type="number" id="inventory-quantity" required min="0" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                        <div class="col-span-1">
+                                            <label for="inventory-warehouse" class="block text-sm font-medium text-gray-700">Warehouse *</label>
+                                            <input type="text" id="inventory-warehouse" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                        </div>
+                                    </div>
+                                    <div class="mt-8 flex justify-end space-x-3">
+                                        <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            Save Inventory
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales & Royalties Section -->
+            <div class="dashboard-section hidden" id="sales-section">
+                <div class="px-4 py-6 sm:px-6">
+                    <h1 class="text-2xl font-bold text-gray-900">Sales & Royalties</h1>
+                    
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 mt-6">
+                        <nav class="-mb-px flex space-x-8">
+                            <a href="#" data-tab="all-sales" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                Sales Overview
+                            </a>
+                            <a href="#" data-tab="royalties" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                Royalties
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Sales Overview Tab Content -->
+                <div class="tab-content active" id="all-sales-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Sales Overview</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-download mr-2"></i> Export
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Units Sold</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" id="all-sales-table">
+                                        <!-- Sales will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Royalties Tab Content -->
+                <div class="tab-content hidden" id="royalties-tab">
+                    <div class="px-4 pb-6 sm:px-6">
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Author Royalties</h3>
+                                    <div class="flex space-x-3">
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-filter mr-2"></i> Filter
+                                        </button>
+                                        <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                            <i class="fas fa-download mr-2"></i> Export
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Royalty Amount</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200" id="royalties-table">
+            <!-- Royalties will be populated here -->
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Marketing Section -->
+<div class="dashboard-section hidden" id="marketing-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Marketing Management</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="all-campaigns" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    All Campaigns
+                </a>
+                <a href="#" data-tab="add-campaign" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Campaign
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Campaigns Tab Content -->
+    <div class="tab-content active" id="all-campaigns-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">All Marketing Campaigns</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button id="add-new-campaign-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Campaign
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Campaign Name</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Channel</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-campaigns-table">
+                            <!-- Campaigns will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Campaign Tab Content -->
+    <div class="tab-content hidden" id="add-campaign-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Campaign</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-campaign-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="campaign-name" class="block text-xs sm:text-sm font-medium text-gray-700">Campaign Name *</label>
+                                <input type="text" id="campaign-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="campaign-book" class="block text-xs sm:text-sm font-medium text-gray-700">Book *</label>
+                                <select id="campaign-book" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Book</option>
+                                    <!-- Books will be populated here -->
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="campaign-channel" class="block text-xs sm:text-sm font-medium text-gray-700">Channel *</label>
+                                <select id="campaign-channel" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Channel</option>
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Email">Email</option>
+                                    <option value="PPC Ads">PPC Ads</option>
+                                    <option value="Press Release">Press Release</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="campaign-start-date" class="block text-xs sm:text-sm font-medium text-gray-700">Start Date *</label>
+                                <input type="date" id="campaign-start-date" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="campaign-status" class="block text-xs sm:text-sm font-medium text-gray-700">Status *</label>
+                                <select id="campaign-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="Planned">Planned</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="campaign-description" class="block text-xs sm:text-sm font-medium text-gray-700">Description</label>
+                                <textarea id="campaign-description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Campaign
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Users Section -->
+<div class="dashboard-section hidden" id="users-section">
+    <div class="px-4 py-6 sm:px-6">
+        <h1 class="text-2xl font-bold text-gray-900">User Management</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-6">
+            <nav class="-mb-px flex space-x-8">
+                <a href="#" data-tab="all-users" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    All Users
+                </a>
+                <a href="#" data-tab="add-user" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    Add New User
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Users Tab Content -->
+    <div class="tab-content active" id="all-users-tab">
+        <div class="px-4 pb-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">All Users</h3>
+                        <div class="flex space-x-3">
+                            <button class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-2"></i> Filter
+                            </button>
+                            <button id="add-new-user-btn" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-2"></i> Add User
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-users-table">
+                            <!-- Users will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Tab Content -->
+    <div class="tab-content hidden" id="add-user-tab">
+        <div class="px-4 pb-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Add New User</h3>
+                </div>
+                <div class="px-4 py-5 sm:p-6">
+                    <form id="add-user-form">
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div class="col-span-1">
+                                <label for="user-name" class="block text-sm font-medium text-gray-700">Name *</label>
+                                <input type="text" id="user-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="user-email" class="block text-sm font-medium text-gray-700">Email *</label>
+                                <input type="email" id="user-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="user-role" class="block text-sm font-medium text-gray-700">Role *</label>
+                                <select id="user-role" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <option value="">Select Role</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Editor">Editor</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales">Sales</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="user-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                <select id="user-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-end space-x-3">
+                            <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save User
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analytics Section -->
+<div class="dashboard-section hidden" id="analytics-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Analytics</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="sales-analytics" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Sales Analytics
+                </a>
+                <a href="#" data-tab="author-analytics" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Author Analytics
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Sales Analytics Tab Content -->
+    <div class="tab-content active" id="sales-analytics-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Sales Analytics</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-download mr-1 sm:mr-2"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                        <div class="bg-gray-50 p-3 sm:p-4 rounded-md">
+                            <h4 class="text-xs sm:text-sm font-medium text-gray-700">Total Sales</h4>
+                            <p class="text-xl sm:text-2xl font-semibold text-gray-900" id="analytics-total-sales">SH.0</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 sm:p-4 rounded-md">
+                            <h4 class="text-xs sm:text-sm font-medium text-gray-700">Top Selling Book</h4>
+                            <p class="text-base sm:text-lg font-medium text-gray-900" id="analytics-top-book">-</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 sm:mt-6 overflow-x-auto">
+                        <table class="w-full table-auto divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Units Sold</th>
+                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
+                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Period</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200" id="sales-analytics-table">
+                                <!-- Analytics will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Author Analytics Tab Content -->
+    <div class="tab-content hidden" id="author-analytics-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Author Analytics</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-download mr-1 sm:mr-2"></i> Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6 overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Books Published</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Sales</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Royalty Earned</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="author-analytics-table">
+                            <!-- Author analytics will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contracts Section -->
+<div class="dashboard-section hidden" id="contracts-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Contract Management</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="all-contracts" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    All Contracts
+                </a>
+                <a href="#" data-tab="add-contract" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Contract
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- All Contracts Tab Content -->
+    <div class="tab-content active" id="all-contracts-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">All Contracts</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-filter mr-1 sm:mr-2"></i> Filter
+                            </button>
+                            <button id="add-new-contract-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Contract
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full table-auto divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contract Type</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="all-contracts-table">
+                            <!-- Contracts will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Contract Tab Content -->
+    <div class="tab-content hidden" id="add-contract-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Contract</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-contract-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="contract-author" class="block text-xs sm:text-sm font-medium text-gray-700">Author *</label>
+                                <select id="contract-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Author</option>
+                                    <!-- Authors will be populated here -->
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="contract-type" class="block text-xs sm:text-sm font-medium text-gray-700">Contract Type *</label>
+                                <select id="contract-type" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Type</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Premium">Premium</option>
+                                    <option value="Exclusive">Exclusive</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label for="contract-start-date" class="block text-xs sm:text-sm font-medium text-gray-700">Start Date *</label>
+                                <input type="date" id="contract-start-date" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="contract-end-date" class="block text-xs sm:text-sm font-medium text-gray-700">End Date</label>
+                                <input type="date" id="contract-end-date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="contract-status" class="block text-xs sm:text-sm font-medium text-gray-700">Status *</label>
+                                <select id="contract-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="Active">Active</option>
+                                    <option value="Expired">Expired</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="contract-file" class="block text-xs sm:text-sm font-medium text-gray-700">Contract File</label>
+                                <input type="file" id="contract-file" class="mt-1 block w-full text-xs sm:text-sm text-gray-500 file:mr-2 sm:file:mr-4 file:py-1 sm:file:py-2 file:px-2 sm:file:px-4 file:rounded-md file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Contract
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Calendar Section -->
+<div class="dashboard-section hidden" id="calendar-section">
+    <div class="px-2 py-4 sm:px-4 sm:py-6">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Calendar</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-4 sm:mt-6">
+            <nav class="-mb-px flex space-x-4 sm:space-x-8 overflow-x-auto">
+                <a href="#" data-tab="calendar-view" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Calendar View
+                </a>
+                <a href="#" data-tab="add-event" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-3 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                    Add New Event
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Calendar View Tab Content -->
+    <div class="tab-content active" id="calendar-view-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Event Calendar</h3>
+                        <div class="flex space-x-2 sm:space-x-3">
+                            <button id="add-new-event-btn" class="inline-flex items-center px-2 py-1 sm:px-3 sm:py-2 border border-transparent text-xs sm:text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <i class="fas fa-plus mr-1 sm:mr-2"></i> Add Event
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6">
+                    <div id="calendar-placeholder" class="h-64 sm:h-96 bg-gray-100 rounded-md flex items-center justify-center">
+                        <p class="text-sm sm:text-base text-gray-500">Calendar view would be implemented here</p>
+                    </div>
+                    <div class="mt-4 sm:mt-6">
+                        <h4 class="text-sm sm:text-md font-medium text-gray-900">Upcoming Events</h4>
+                        <div class="overflow-x-auto mt-4">
+                            <table class="w-full table-auto divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event Name</th>
+                                        <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                        <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200" id="upcoming-events-table">
+                                    <!-- Events will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Event Tab Content -->
+    <div class="tab-content hidden" id="add-event-tab">
+        <div class="px-2 pb-4 sm:px-4 sm:pb-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-200">
+                    <h3 class="text-base sm:text-lg font-medium leading-6 text-gray-900">Add New Event</h3>
+                </div>
+                <div class="px-4 py-4 sm:px-6 sm:py-5">
+                    <form id="add-event-form">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="col-span-1">
+                                <label for="event-name" class="block text-xs sm:text-sm font-medium text-gray-700">Event Name *</label>
+                                <input type="text" id="event-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="event-date" class="block text-xs sm:text-sm font-medium text-gray-700">Date *</label>
+                                <input type="date" id="event-date" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="event-type" class="block text-xs sm:text-sm font-medium text-gray-700">Type *</label>
+                                <select id="event-type" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm">
+                                    <option value="">Select Type</option>
+                                    <option value="Book Launch">Book Launch</option>
+                                    <option value="Author Signing">Author Signing</option>
+                                    <option value="Marketing Campaign">Marketing Campaign</option>
+                                    <option value="Deadline">Deadline</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1 sm:col-span-2">
+                                <label for="event-description" class="block text-xs sm:text-sm font-medium text-gray-700">Description</label>
+                                <textarea id="event-description" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-1 sm:py-2 px-2 sm:px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-xs sm:text-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-6 sm:mt-8 flex justify-end space-x-2 sm:space-x-3">
+                            <button type="button" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-gray-300 shadow-sm text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-2 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Event
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Section -->
+<div class="dashboard-section hidden" id="settings-section">
+    <div class="px-4 py-6 sm:px-6">
+        <h1 class="text-2xl font-bold text-gray-900">Settings</h1>
+        
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 mt-6">
+            <nav class="-mb-px flex space-x-8">
+                <a href="#" data-tab="general-settings" class="tab active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    General Settings
+                </a>
+                <a href="#" data-tab="notification-settings" class="tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    Notifications
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- General Settings Tab Content -->
+    <div class="tab-content active" id="general-settings-tab">
+        <div class="px-4 pb-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">General Settings</h3>
+                </div>
+                <div class="px-4 py-5 sm:p-6">
+                    <form id="general-settings-form">
+                        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div class="col-span-1">
+                                <label for="company-name" class="block text-sm font-medium text-gray-700">Company Name *</label>
+                                <input type="text" id="company-name" required value="WENSTECH PUBLISHERS" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                            </div>
+                            <div class="col-span-1">
+                                <label for="company-email" class="block text-sm font-medium text-gray-700">Company Email *</label>
+                                <input type="email" id="company-email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="company-address" class="block text-sm font-medium text-gray-700">Company Address</label>
+                                <textarea id="company-address" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-end space-x-3">
+                            <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Settings Tab Content -->
+    <div class="tab-content hidden" id="notification-settings-tab">
+        <div class="px-4 pb-6 sm:px-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Notification Settings</h3>
+                </div>
+                <div class="px-4 py-5 sm:p-6">
+                    <form id="notification-settings-form">
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notify-new-manuscript" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="notify-new-manuscript" class="ml-2 block text-sm text-gray-900">New Manuscript Submissions</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notify-sales" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="notify-sales" class="ml-2 block text-sm text-gray-900">Sales Updates</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notify-contracts" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="notify-contracts" class="ml-2 block text-sm text-gray-900">Contract Expirations</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="notify-deadlines" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                                <label for="notify-deadlines" class="ml-2 block text-sm text-gray-900">Editing Deadlines</label>
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-end space-x-3">
+                            <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Cancel
+                            </button>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                Save Notifications
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Add Book Modal -->
+<div id="add-book-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Add New Book</h3>
+                        <div class="mt-4">
+                            <form id="modal-book-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="modal-book-title" class="block text-sm font-medium text-gray-700">Title *</label>
+                                        <input type="text" id="modal-book-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="modal-book-author" class="block text-sm font-medium text-gray-700">Author *</label>
+                                        <select id="modal-book-author" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="">Select Author</option>
+                                            <!-- Authors will be populated here -->
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="modal-book-status" class="block text-sm font-medium text-gray-700">Status *</label>
+                                        <select id="modal-book-status" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm">
+                                            <option value="Draft">Draft</option>
+                                            <option value="In Production">In Production</option>
+                                            <option value="Published">Published</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="save-book-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary-500 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Save Book
+                </button>
+                <button id="cancel-book-modal" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// DOM Elements
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const closeMobileSidebar = document.getElementById('close-mobile-sidebar');
+const mobileSidebar = document.getElementById('mobile-sidebar');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const navLinks = document.querySelectorAll('.nav-link');
+const dashboardSections = document.querySelectorAll('.dashboard-section');
+const tabs = document.querySelectorAll('.tab');
+const tabContents = document.querySelectorAll('.tab-content');
+const addBookBtn = document.getElementById('add-book-btn');
+const addNewBookBtn = document.getElementById('add-new-book-btn');
+const addBookModal = document.getElementById('add-book-modal');
+const closeBookModal = document.getElementById('cancel-book-modal');
+const saveBookModal = document.getElementById('save-book-modal');
+const addNewAuthorBtn = document.getElementById('add-new-author-btn');
+const addNewManuscriptBtn = document.getElementById('add-new-manuscript-btn');
+const addNewEditingBtn = document.getElementById('add-new-editing-btn');
+const addNewInventoryBtn = document.getElementById('add-new-inventory-btn');
+const addNewCampaignBtn = document.getElementById('add-new-campaign-btn');
+const addNewUserBtn = document.getElementById('add-new-user-btn');
+const addNewContractBtn = document.getElementById('add-new-contract-btn');
+const addNewEventBtn = document.getElementById('add-new-event-btn');
+
+// Mobile menu toggle
+mobileMenuButton.addEventListener('click', () => {
+    mobileSidebar.classList.remove('hidden');
+});
+
+closeMobileSidebar.addEventListener('click', () => {
+    mobileSidebar.classList.add('hidden');
+});
+
+sidebarOverlay.addEventListener('click', () => {
+    mobileSidebar.classList.add('hidden');
+});
+
+// Navigation between sections
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        navLinks.forEach(navLink => {
+            navLink.classList.remove('bg-primary-500', 'text-white');
+            navLink.classList.add('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+            const icon = navLink.querySelector('i');
+            if (icon) {
+                icon.classList.remove('text-white');
+                icon.classList.add('text-gray-400', 'group-hover:text-gray-500');
+            }
+        });
+        
+        // Add active class to clicked link
+        link.classList.remove('text-gray-600', 'hover:bg-gray-50', 'hover:text-gray-900');
+        link.classList.add('bg-primary-500', 'text-white');
+        const icon = link.querySelector('i');
+        if (icon) {
+            icon.classList.remove('text-gray-400', 'group-hover:text-gray-500');
+            icon.classList.add('text-white');
+        }
+        
+        // Hide all sections
+        dashboardSections.forEach(section => section.classList.add('hidden'));
+        
+        // Show the selected section
+        const sectionId = link.getAttribute('data-section') + '-section';
+        document.getElementById(sectionId).classList.remove('hidden');
+        
+        // Update page title
+        document.getElementById('page-title').textContent = link.textContent.trim();
+        
+        // Close mobile sidebar
+        mobileSidebar.classList.add('hidden');
+        
+        // Load data for the section
+        loadDashboardData();
+    });
+});
+
+// Tab functionality
+tabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Find parent section
+        const section = tab.closest('.dashboard-section');
+        const sectionTabs = section.querySelectorAll('.tab');
+        const sectionTabContents = section.querySelectorAll('.tab-content');
+        
+        // Remove active class from all tabs in this section
+        sectionTabs.forEach(t => {
+            t.classList.remove('border-primary-500', 'text-primary-600');
+            t.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+        });
+        
+        // Add active class to clicked tab
+        tab.classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+        tab.classList.add('border-primary-500', 'text-primary-600');
+        
+        // Hide all tab contents in this section
+        sectionTabContents.forEach(content => content.classList.add('hidden'));
+        
+        // Show the selected tab content
+        const tabId = tab.getAttribute('data-tab') + '-tab';
+        section.querySelector(`#${tabId}`).classList.remove('hidden');
+    });
+});
+
+// Modal functionality
+addBookBtn.addEventListener('click', () => {
+    addBookModal.classList.remove('hidden');
+});
+
+addNewBookBtn.addEventListener('click', () => {
+    // Switch to add book tab
+    document.querySelector('.tab[data-tab="add-book"]').click();
+});
+
+closeBookModal.addEventListener('click', () => {
+    addBookModal.classList.add('hidden');
+});
+
+saveBookModal.addEventListener('click', () => {
+    const title = document.getElementById('modal-book-title').value;
+    const authorId = document.getElementById('modal-book-author').value;
+    const author = document.getElementById('modal-book-author').options[document.getElementById('modal-book-author').selectedIndex].text;
+    const status = document.getElementById('modal-book-status').value;
+    
+    if (!title || !authorId || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+    
+    const books = JSON.parse(localStorage.getItem('wenstechBooks')) || [];
+    const newId = books.length > 0 ? Math.max(...books.map(b => b.id)) + 1 : 1;
+    
+    const newBook = {
+        id: newId,
+        title,
+        author,
+        authorId: parseInt(authorId),
+        status,
+        publishedDate: status === 'Published' ? new Date().toISOString().split('T')[0] : null
+    };
+    
+    books.push(newBook);
+    localStorage.setItem('wenstechBooks', JSON.stringify(books));
+    
+    // Update author's books list
+    const authors = JSON.parse(localStorage.getItem('wenstechAuthors')) || [];
+    const authorToUpdate = authors.find(a => a.id === parseInt(authorId));
+    if (authorToUpdate) {
+        if (!authorToUpdate.books) authorToUpdate.books = [];
+        authorToUpdate.books.push(newId);
+        localStorage.setItem('wenstechAuthors', JSON.stringify(authors));
+    }
+    
+    // Close modal
+    addBookModal.classList.add('hidden');
+    
+    // Reset form
+    document.getElementById('modal-book-form').reset();
+    
+    // Reload data
+    loadDashboardData();
+    
+    // Show success message
+    alert('Book added successfully!');
+});
+
+// Add new buttons functionality
+addNewAuthorBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-author"]').click();
+});
+
+addNewManuscriptBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-manuscript"]').click();
+});
+
+addNewEditingBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-editing"]').click();
+});
+
+addNewInventoryBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-inventory"]').click();
+});
+
+addNewCampaignBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-campaign"]').click();
+});
+
+addNewUserBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-user"]').click();
+});
+
+addNewContractBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-contract"]').click();
+});
+
+addNewEventBtn.addEventListener('click', () => {
+    document.querySelector('.tab[data-tab="add-event"]').click();
+});
+
+// LocalStorage Data Management
+// Initialize data if not exists
+if (!localStorage.getItem('wenstechBooks')) {
+    const initialBooks = [
+        {
+            id: 1,
+            title: "The Art of Publishing",
+            author: "Jane Doe",
+            authorId: 1,
+            isbn: "978-1234567890",
+            genre: "Business",
+            status: "Published",
+            formats: ["Print", "eBook"],
+            publishedDate: "2023-05-15",
+            cover: "",
+            synopsis: "A comprehensive guide to modern publishing practices."
+        },
+        {
+            id: 2,
+            title: "Digital Marketing for Authors",
+            author: "John Smith",
+            authorId: 2,
+            isbn: "978-0987654321",
+            genre: "Marketing",
+            status: "Published",
+            formats: ["Print", "eBook", "Audiobook"],
+            publishedDate: "2023-06-20",
+            cover: "",
+            synopsis: "Learn how to effectively market your books in the digital age."
+        }
+    ];
+    localStorage.setItem('wenstechBooks', JSON.stringify(initialBooks));
+}
+
+if (!localStorage.getItem('wenstechAuthors')) {
+    const initialAuthors = [
+        {
+            id: 1,
+            name: "Jane Doe",
+            email: "jane.doe@example.com",
+            bio: "Experienced publisher with 15 years in the industry.",
+            headshot: "",
+            contract: "Standard",
+            status: "Active",
+            books: [1]
+        },
+        {
+            id: 2,
+            name: "John Smith",
+            email: "john.smith@example.com",
+            bio: "Marketing expert specializing in author branding.",
+            headshot: "",
+            contract: "Premium",
+            status: "Active",
+            books: [2]
+        }
+    ];
+    localStorage.setItem('wenstechAuthors', JSON.stringify(initialAuthors));
+}
+
+if (!localStorage.getItem('wenstechManuscripts')) {
+    const initialManuscripts = [
+        {
+            id: 1,
+            title: "The Future of Print",
+            author: "Emily Johnson",
+            authorId: 3,
+            submittedDate: "2023-07-10",
+            status: "Under Review",
+            assignedTo: "Editor 1",
+            file: ""
+        },
+        {
+            id: 2,
+            title: "Self-Publishing Guide",
+            author: "Michael Brown",
+            authorId: 4,
+            submittedDate: "2023-07-15",
+            status: "Submitted",
+            assignedTo: "",
+            file: ""
+        }
+    ];
+    localStorage.setItem('wenstechManuscripts', JSON.stringify(initialManuscripts));
+}
+
+if (!localStorage.getItem('wenstechEditingProjects')) {
+    const initialEditingProjects = [
+        {
+            id: 1,
+            bookId: 1,
+            bookTitle: "The Art of Publishing",
+            editor: "Sarah Wilson",
+            stage: "Copy Editing",
+            deadline: "2023-08-01",
+            status: "In Progress"
+        }
+    ];
+    localStorage.setItem('wenstechEditingProjects', JSON.stringify(initialEditingProjects));
+}
+
+if (!localStorage.getItem('wenstechInventory')) {
+    const initialInventory = [
+        {
+            id: 1,
+            bookId: 1,
+            bookTitle: "The Art of Publishing",
+            format: "Print",
+            quantity: 500,
+            warehouse: "Main Warehouse"
+        }
+    ];
+    localStorage.setItem('wenstechInventory', JSON.stringify(initialInventory));
+}
+
+if (!localStorage.getItem('wenstechSales')) {
+    const initialSales = [
+        {
+            id: 1,
+            bookId: 1,
+            bookTitle: "The Art of Publishing",
+            author: "Jane Doe",
+            unitsSold: 100,
+            revenue: 2500,
+            period: "2023-07"
+        }
+    ];
+    localStorage.setItem('wenstechSales', JSON.stringify(initialSales));
+}
+
+if (!localStorage.getItem('wenstechRoyalties')) {
+    const initialRoyalties = [
+        {
+            id: 1,
+            authorId: 1,
+            author: "Jane Doe",
+            bookId: 1,
+            bookTitle: "The Art of Publishing",
+            amount: 500,
+            period: "2023-07",
+            status: "Pending"
+        }
+    ];
+    localStorage.setItem('wenstechRoyalties', JSON.stringify(initialRoyalties));
+}
+
+if (!localStorage.getItem('wenstechCampaigns')) {
+    const initialCampaigns = [
+        {
+            id: 1,
+            name: "Summer Book Launch",
+            bookId: 1,
+            bookTitle: "The Art of Publishing",
+            channel: "Social Media",
+            startDate: "2023-06-01",
+            status: "Completed"
+        }
+    ];
+    localStorage.setItem('wenstechCampaigns', JSON.stringify(initialCampaigns));
+}
+
+if (!localStorage.getItem('wenstechUsers')) {
+    const initialUsers = [
+        {
+            id: 1,
+            name: "Admin User",
+            email: "admin@example.com",
+            role: "Admin",
+            status: "Active"
+        }
+    ];
+    localStorage.setItem('wenstechUsers', JSON.stringify(initialUsers));
+}
+
+if (!localStorage.getItem('wenstechContracts')) {
+    const initialContracts = [
+        {
+            id: 1,
+            authorId: 1,
+            author: "Jane Doe",
+            type: "Standard",
+            startDate: "2023-01-01",
+            endDate: "2025-12-31",
+            status: "Active"
+        }
+    ];
+    localStorage.setItem('wenstechContracts', JSON.stringify(initialContracts));
+}
+
+if (!localStorage.getItem('wenstechEvents')) {
+    const initialEvents = [
+        {
+            id: 1,
+            name: "Book Launch: The Art of Publishing",
+            date: "2023-05-15",
+            type: "Book Launch"
+        }
+    ];
+    localStorage.setItem('wenstechEvents', JSON.stringify(initialEvents));
+}
+
+if (!localStorage.getItem('wenstechSettings')) {
+    const initialSettings = {
+        companyName: "WENSTECH PUBLISHERS",
+        companyEmail: "contact@wenspublishers.com",
+        companyAddress: "",
+        notifications: {
+            newManuscript: true,
+            sales: true,
+            contracts: true,
+            deadlines: true
+        }
+    };
+    localStorage.setItem('wenstechSettings', JSON.stringify(initialSettings));
+}
+
+// Load data into dashboard
+function loadDashboardData() {
+    const books = JSON.parse(localStorage.getItem('wenstechBooks')) || [];
+    const authors = JSON.parse(localStorage.getItem('wenstechAuthors')) || [];
+    const manuscripts = JSON.parse(localStorage.getItem('wenstechManuscripts')) || [];
+    const editingProjects = JSON.parse(localStorage.getItem('wenstechEditingProjects')) || [];
+    const inventory = JSON.parse(localStorage.getItem('wenstechInventory')) || [];
+    const sales = JSON.parse(localStorage.getItem('wenstechSales')) || [];
+    const royalties = JSON.parse(localStorage.getItem('wenstechRoyalties')) || [];
+    const campaigns = JSON.parse(localStorage.getItem('wenstechCampaigns')) || [];
+    const users = JSON.parse(localStorage.getItem('wenstechUsers')) || [];
+    const contracts = JSON.parse(localStorage.getItem('wenstechContracts')) || [];
+    const events = JSON.parse(localStorage.getItem('wenstechEvents')) || [];
+    const settings = JSON.parse(localStorage.getItem('wenstechSettings')) || {};
+    
+    // Update overview cards
+    document.getElementById('total-books').textContent = books.length;
+    document.getElementById('total-authors').textContent = authors.length;
+    document.getElementById('pending-manuscripts').textContent = manuscripts.filter(m => m.status === 'Submitted' || m.status === 'Under Review').length;
+    
+    // Calculate monthly sales
+    const monthlySales = sales.reduce((sum, sale) => sum + sale.revenue, 0);
+    document.getElementById('monthly-sales').textContent = monthlySales.toLocaleString();
+    
+    // Populate recent books table
+    const recentBooksTable = document.getElementById('recent-books-table');
+    recentBooksTable.innerHTML = '';
+    
+    books.slice(0, 5).forEach(book => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${book.title}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.author}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(book.status)}">
+                    ${book.status}
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.formats ? book.formats.join(', ') : ''}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.publishedDate || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+        recentBooksTable.appendChild(row);
+    });
+    
+    // Populate recent manuscripts table
+    const recentManuscriptsTable = document.getElementById('recent-manuscripts-table');
+    recentManuscriptsTable.innerHTML = '';
+    
+    manuscripts.slice(0, 5).forEach(ms => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${ms.title}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.author}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.submittedDate}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.status}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.assignedTo || '-'}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Review"><i class="fas fa-search"></i></button>
+                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Assign"><i class="fas fa-user-tag"></i></button>
+                <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Update Status"><i class="fas fa-exchange-alt"></i></button>
+            </td>
+        `;
+        recentManuscriptsTable.appendChild(row);
+    });
+    
+    // Populate all books table
+    const allBooksTable = document.getElementById('all-books-table');
+    if (allBooksTable) {
+        allBooksTable.innerHTML = '';
+        
+        books.forEach(book => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="w-10 h-15 bg-gray-100 flex items-center justify-center">
+                        <i class="fas fa-book text-gray-400"></i>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${book.title}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.author}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.isbn || '-'}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${book.genre}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(book.status)}">
+                        ${book.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allBooksTable.appendChild(row);
+        });
+    }
+    
+    // Populate all authors table
+    const allAuthorsTable = document.getElementById('all-authors-table');
+    if (allAuthorsTable) {
+        allAuthorsTable.innerHTML = '';
+        
+        authors.forEach(author => {
+            const authorBooks = books.filter(b => b.authorId === author.id);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${author.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${authorBooks.length}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${author.contract}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(author.status)}">
+                        ${author.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allAuthorsTable.appendChild(row);
+        });
+    }
+    
+    // Populate all manuscripts table
+    const allManuscriptsTable = document.getElementById('all-manuscripts-table');
+    if (allManuscriptsTable) {
+        allManuscriptsTable.innerHTML = '';
+        
+        manuscripts.forEach(ms => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${ms.title}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.author}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.submittedDate}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(ms.status)}">
+                        ${ms.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${ms.assignedTo || '-'}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Review"><i class="fas fa-search"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Assign"><i class="fas fa-user-tag"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Update Status"><i class="fas fa-exchange-alt"></i></button>
+                </td>
+            `;
+            allManuscriptsTable.appendChild(row);
+        });
+    }
+    
+    // Populate all editing projects table
+    const allEditingTable = document.getElementById('all-editing-table');
+    if (allEditingTable) {
+        allEditingTable.innerHTML = '';
+        
+        editingProjects.forEach(project => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${project.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${project.editor}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${project.stage}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${project.deadline}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(project.status)}">
+                        ${project.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                                        <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allEditingTable.appendChild(row);
+        });
+    }
+
+    // Populate all inventory table
+    const allInventoryTable = document.getElementById('all-inventory-table');
+    if (allInventoryTable) {
+        allInventoryTable.innerHTML = '';
+
+        inventory.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.format}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.quantity}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.warehouse}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allInventoryTable.appendChild(row);
+        });
+    }
+
+    // Populate all sales table
+    const allSalesTable = document.getElementById('all-sales-table');
+    if (allSalesTable) {
+        allSalesTable.innerHTML = '';
+
+        sales.forEach(sale => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${sale.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sale.author}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sale.unitsSold}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">SH.${sale.revenue.toLocaleString()}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sale.period}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                </td>
+            `;
+            allSalesTable.appendChild(row);
+        });
+    }
+
+    // Populate all royalties table
+    const royaltiesTable = document.getElementById('royalties-table');
+    if (royaltiesTable) {
+        royaltiesTable.innerHTML = '';
+
+        royalties.forEach(royalty => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${royalty.author}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${royalty.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">SH.${royalty.amount.toLocaleString()}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${royalty.period}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(royalty.status)}">
+                        ${royalty.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Process"><i class="fas fa-check"></i></button>
+                </td>
+            `;
+            royaltiesTable.appendChild(row);
+        });
+    }
+
+    // Populate all campaigns table
+    const allCampaignsTable = document.getElementById('all-campaigns-table');
+    if (allCampaignsTable) {
+        allCampaignsTable.innerHTML = '';
+
+        campaigns.forEach(campaign => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${campaign.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${campaign.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${campaign.channel}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${campaign.startDate}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(campaign.status)}">
+                        ${campaign.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allCampaignsTable.appendChild(row);
+        });
+    }
+
+    // Populate all users table
+    const allUsersTable = document.getElementById('all-users-table');
+    if (allUsersTable) {
+        allUsersTable.innerHTML = '';
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.email}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${user.role}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(user.status)}">
+                        ${user.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allUsersTable.appendChild(row);
+        });
+    }
+
+    // Populate all contracts table
+    const allContractsTable = document.getElementById('all-contracts-table');
+    if (allContractsTable) {
+        allContractsTable.innerHTML = '';
+
+        contracts.forEach(contract => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${contract.author}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${contract.type}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${contract.startDate}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${contract.endDate || '-'}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="status-badge px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusBadgeClass(contract.status)}">
+                        ${contract.status}
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            allContractsTable.appendChild(row);
+        });
+    }
+
+    // Populate upcoming events table
+    const upcomingEventsTable = document.getElementById('upcoming-events-table');
+    if (upcomingEventsTable) {
+        upcomingEventsTable.innerHTML = '';
+
+        events.forEach(event => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${event.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${event.date}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${event.type}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="Edit"><i class="fas fa-edit"></i></button>
+                    <button class="text-indigo-600 hover:text-indigo-900 action-btn" title="View"><i class="fas fa-eye"></i></button>
+                    <button class="text-red-600 hover:text-red-900 action-btn" title="Delete"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            upcomingEventsTable.appendChild(row);
+        });
+    }
+
+    // Populate sales analytics
+    const salesAnalyticsTable = document.getElementById('sales-analytics-table');
+    if (salesAnalyticsTable) {
+        salesAnalyticsTable.innerHTML = '';
+
+        sales.forEach(sale => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${sale.bookTitle}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sale.unitsSold}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">SH.${sale.revenue.toLocaleString()}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${sale.period}</td>
+            `;
+            salesAnalyticsTable.appendChild(row);
+        });
+
+        // Update analytics summary
+        document.getElementById('analytics-total-sales').textContent = `SH.${sales.reduce((sum, sale) => sum + sale.revenue, 0).toLocaleString()}`;
+        const topBook = sales.reduce((max, sale) => sale.unitsSold > (max.unitsSold || 0) ? sale : max, {});
+        document.getElementById('analytics-top-book').textContent = topBook.bookTitle || '-';
+    }
+
+    // Populate author analytics
+    const authorAnalyticsTable = document.getElementById('author-analytics-table');
+    if (authorAnalyticsTable) {
+        authorAnalyticsTable.innerHTML = '';
+
+        authors.forEach(author => {
+            const authorBooks = books.filter(b => b.authorId === author.id);
+            const authorSales = sales.filter(s => authorBooks.some(b => b.id === s.bookId));
+            const totalSales = authorSales.reduce((sum, s) => sum + s.revenue, 0);
+            const authorRoyalties = royalties.filter(r => r.authorId === author.id);
+            const totalRoyalties = authorRoyalties.reduce((sum, r) => sum + r.amount, 0);
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${author.name}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${authorBooks.length}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">SH.${totalSales.toLocaleString()}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">SH.${totalRoyalties.toLocaleString()}</td>
+            `;
+            authorAnalyticsTable.appendChild(row);
+        });
+    }
+
+    // Populate modal author select
+    const modalAuthorSelect = document.getElementById('modal-book-author');
+    if (modalAuthorSelect) {
+        modalAuthorSelect.innerHTML = '<option value="">Select Author</option>';
+        authors.forEach(author => {
+            const option = document.createElement('option');
+            option.value = author.id;
+            option.textContent = author.name;
+            modalAuthorSelect.appendChild(option);
+        });
+    }
+
+    // Populate campaign book select
+    const campaignBookSelect = document.getElementById('campaign-book');
+    if (campaignBookSelect) {
+        campaignBookSelect.innerHTML = '<option value="">Select Book</option>';
+        books.forEach(book => {
+            const option = document.createElement('option');
+            option.value = book.id;
+            option.textContent = book.title;
+            campaignBookSelect.appendChild(option);
+        });
+    }
+
+    // Populate contract author select
+    const contractAuthorSelect = document.getElementById('contract-author');
+    if (contractAuthorSelect) {
+        contractAuthorSelect.innerHTML = '<option value="">Select Author</option>';
+        authors.forEach(author => {
+            const option = document.createElement('option');
+            option.value = author.id;
+            option.textContent = author.name;
+            contractAuthorSelect.appendChild(option);
+        });
+    }
+
+    // Populate settings form
+    const companyNameInput = document.getElementById('company-name');
+    const companyEmailInput = document.getElementById('company-email');
+    const companyAddressInput = document.getElementById('company-address');
+    if (companyNameInput && companyEmailInput && companyAddressInput) {
+        companyNameInput.value = settings.companyName || '';
+        companyEmailInput.value = settings.companyEmail || '';
+        companyAddressInput.value = settings.companyAddress || '';
+    }
+
+    const notifyManuscript = document.getElementById('notify-new-manuscript');
+    const notifySales = document.getElementById('notify-sales');
+    const notifyContracts = document.getElementById('notify-contracts');
+    const notifyDeadlines = document.getElementById('notify-deadlines');
+    if (notifyManuscript && notifySales && notifyContracts && notifyDeadlines) {
+        notifyManuscript.checked = settings.notifications?.newManuscript || false;
+        notifySales.checked = settings.notifications?.sales || false;
+        notifyContracts.checked = settings.notifications?.contracts || false;
+        notifyDeadlines.checked = settings.notifications?.deadlines || false;
+    }
+}
+
+// Status badge class helper
+function getStatusBadgeClass(status) {
+    switch (status) {
+        case 'Published':
+        case 'Active':
+        case 'Completed':
+            return 'bg-green-100 text-green-800';
+        case 'Draft':
+        case 'In Progress':
+        case 'Pending':
+            return 'bg-yellow-100 text-yellow-800';
+        case 'Submitted':
+        case 'Under Review':
+            return 'bg-blue-100 text-blue-800';
+        case 'Expired':
+        case 'Inactive':
+            return 'bg-red-100 text-red-800';
+        default:
+            return 'bg-gray-100 text-gray-800';
+    }
+}
+
+// Form submissions
+document.getElementById('add-author-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('author-name').value;
+    const email = document.getElementById('author-email').value;
+    const contract = document.getElementById('author-contract').value;
+    const status = document.getElementById('author-status').value;
+    const bio = document.getElementById('author-bio').value;
+
+    if (!name || !email || !contract || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const authors = JSON.parse(localStorage.getItem('wenstechAuthors')) || [];
+    const newId = authors.length > 0 ? Math.max(...authors.map(a => a.id)) + 1 : 1;
+
+    const newAuthor = {
+        id: newId,
+        name,
+        email,
+        bio,
+        contract,
+        status,
+        books: []
+    };
+
+    authors.push(newAuthor);
+    localStorage.setItem('wenstechAuthors', JSON.stringify(authors));
+    e.target.reset();
+    loadDashboardData();
+    alert('Author added successfully!');
+});
+
+document.getElementById('add-manuscript-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.getElementById('manuscript-title').value;
+    const authorId = document.getElementById('manuscript-author').value;
+    const author = document.getElementById('manuscript-author').options[document.getElementById('manuscript-author').selectedIndex].text;
+    const status = document.getElementById('manuscript-status').value;
+
+    if (!title || !authorId || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const manuscripts = JSON.parse(localStorage.getItem('wenstechManuscripts')) || [];
+    const newId = manuscripts.length > 0 ? Math.max(...manuscripts.map(m => m.id)) + 1 : 1;
+
+    const newManuscript = {
+        id: newId,
+        title,
+        author,
+        authorId: parseInt(authorId),
+        submittedDate: new Date().toISOString().split('T')[0],
+        status,
+        assignedTo: ''
+    };
+
+    manuscripts.push(newManuscript);
+    localStorage.setItem('wenstechManuscripts', JSON.stringify(manuscripts));
+    e.target.reset();
+    loadDashboardData();
+    alert('Manuscript added successfully!');
+});
+
+document.getElementById('add-editing-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const bookId = document.getElementById('editing-book').value;
+    const bookTitle = document.getElementById('editing-book').options[document.getElementById('editing-book').selectedIndex].text;
+    const editor = document.getElementById('editing-editor').value;
+    const stage = document.getElementById('editing-stage').value;
+    const deadline = document.getElementById('editing-deadline').value;
+    const status = document.getElementById('editing-status').value;
+
+    if (!bookId || !editor || !stage || !deadline || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const editingProjects = JSON.parse(localStorage.getItem('wenstechEditingProjects')) || [];
+    const newId = editingProjects.length > 0 ? Math.max(...editingProjects.map(p => p.id)) + 1 : 1;
+
+    const newProject = {
+        id: newId,
+        bookId: parseInt(bookId),
+        bookTitle,
+        editor,
+        stage,
+        deadline,
+        status
+    };
+
+    editingProjects.push(newProject);
+    localStorage.setItem('wenstechEditingProjects', JSON.stringify(editingProjects));
+    e.target.reset();
+    loadDashboardData();
+    alert('Editing project added successfully!');
+});
+
+document.getElementById('add-inventory-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const bookId = document.getElementById('inventory-book').value;
+    const bookTitle = document.getElementById('inventory-book').options[document.getElementById('inventory-book').selectedIndex].text;
+    const format = document.getElementById('inventory-format').value;
+    const quantity = document.getElementById('inventory-quantity').value;
+    const warehouse = document.getElementById('inventory-warehouse').value;
+
+    if (!bookId || !format || !quantity || !warehouse) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const inventory = JSON.parse(localStorage.getItem('wenstechInventory')) || [];
+    const newId = inventory.length > 0 ? Math.max(...inventory.map(i => i.id)) + 1 : 1;
+
+    const newItem = {
+        id: newId,
+        bookId: parseInt(bookId),
+        bookTitle,
+        format,
+        quantity: parseInt(quantity),
+        warehouse
+    };
+
+    inventory.push(newItem);
+    localStorage.setItem('wenstechInventory', JSON.stringify(inventory));
+    e.target.reset();
+    loadDashboardData();
+    alert('Inventory item added successfully!');
+});
+
+document.getElementById('add-campaign-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('campaign-name').value;
+    const bookId = document.getElementById('campaign-book').value;
+    const bookTitle = document.getElementById('campaign-book').options[document.getElementById('campaign-book').selectedIndex].text;
+    const channel = document.getElementById('campaign-channel').value;
+    const startDate = document.getElementById('campaign-start-date').value;
+    const status = document.getElementById('campaign-status').value;
+    const description = document.getElementById('campaign-description').value;
+
+    if (!name || !bookId || !channel || !startDate || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const campaigns = JSON.parse(localStorage.getItem('wenstechCampaigns')) || [];
+    const newId = campaigns.length > 0 ? Math.max(...campaigns.map(c => c.id)) + 1 : 1;
+
+    const newCampaign = {
+        id: newId,
+        name,
+        bookId: parseInt(bookId),
+        bookTitle,
+        channel,
+        startDate,
+        status,
+        description
+    };
+
+    campaigns.push(newCampaign);
+    localStorage.setItem('wenstechCampaigns', JSON.stringify(campaigns));
+    e.target.reset();
+    loadDashboardData();
+    alert('Campaign added successfully!');
+});
+
+document.getElementById('add-user-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('user-name').value;
+    const email = document.getElementById('user-email').value;
+    const role = document.getElementById('user-role').value;
+    const status = document.getElementById('user-status').value;
+
+    if (!name || !email || !role || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('wenstechUsers')) || [];
+    const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+
+    const newUser = {
+        id: newId,
+        name,
+        email,
+        role,
+        status
+    };
+
+    users.push(newUser);
+    localStorage.setItem('wenstechUsers', JSON.stringify(users));
+    e.target.reset();
+    loadDashboardData();
+    alert('User added successfully!');
+});
+
+document.getElementById('add-contract-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const authorId = document.getElementById('contract-author').value;
+    const author = document.getElementById('contract-author').options[document.getElementById('contract-author').selectedIndex].text;
+    const type = document.getElementById('contract-type').value;
+    const startDate = document.getElementById('contract-start-date').value;
+    const endDate = document.getElementById('contract-end-date').value;
+    const status = document.getElementById('contract-status').value;
+
+    if (!authorId || !type || !startDate || !status) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const contracts = JSON.parse(localStorage.getItem('wenstechContracts')) || [];
+    const newId = contracts.length > 0 ? Math.max(...contracts.map(c => c.id)) + 1 : 1;
+
+    const newContract = {
+        id: newId,
+        authorId: parseInt(authorId),
+        author,
+        type,
+        startDate,
+        endDate: endDate || null,
+        status
+    };
+
+    contracts.push(newContract);
+    localStorage.setItem('wenstechContracts', JSON.stringify(contracts));
+    e.target.reset();
+    loadDashboardData();
+    alert('Contract added successfully!');
+});
+
+document.getElementById('add-event-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('event-name').value;
+    const date = document.getElementById('event-date').value;
+    const type = document.getElementById('event-type').value;
+    const description = document.getElementById('event-description').value;
+
+    if (!name || !date || !type) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const events = JSON.parse(localStorage.getItem('wenstechEvents')) || [];
+    const newId = events.length > 0 ? Math.max(...events.map(e => e.id)) + 1 : 1;
+
+    const newEvent = {
+        id: newId,
+        name,
+        date,
+        type,
+        description
+    };
+
+    events.push(newEvent);
+    localStorage.setItem('wenstechEvents', JSON.stringify(events));
+    e.target.reset();
+    loadDashboardData();
+    alert('Event added successfully!');
+});
+
+document.getElementById('general-settings-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const companyName = document.getElementById('company-name').value;
+    const companyEmail = document.getElementById('company-email').value;
+    const companyAddress = document.getElementById('company-address').value;
+
+    if (!companyName || !companyEmail) {
+        alert('Please fill all required fields');
+        return;
+    }
+
+    const settings = JSON.parse(localStorage.getItem('wenstechSettings')) || {};
+    settings.companyName = companyName;
+    settings.companyEmail = companyEmail;
+    settings.companyAddress = companyAddress;
+
+    localStorage.setItem('wenstechSettings', JSON.stringify(settings));
+    alert('Settings saved successfully!');
+});
+
+document.getElementById('notification-settings-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const notifyManuscript = document.getElementById('notify-new-manuscript').checked;
+    const notifySales = document.getElementById('notify-sales').checked;
+    const notifyContracts = document.getElementById('notify-contracts').checked;
+    const notifyDeadlines = document.getElementById('notify-deadlines').checked;
+
+    const settings = JSON.parse(localStorage.getItem('wenstechSettings')) || {};
+    settings.notifications = {
+        newManuscript: notifyManuscript,
+        sales: notifySales,
+        contracts: notifyContracts,
+        deadlines: notifyDeadlines
+    };
+
+    localStorage.setItem('wenstechSettings', JSON.stringify(settings));
+    alert('Notification settings saved successfully!');
+});
+
+// Action button handlers (placeholder for edit/view/delete)
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.action-btn')) {
+        const button = e.target.closest('.action-btn');
+        const title = button.getAttribute('title');
+        const row = button.closest('tr');
+        
+        if (title === 'Edit') {
+            alert(`Edit functionality for row: ${row.cells[0].textContent}`);
+            // Implement edit logic here
+        } else if (title === 'View') {
+            alert(`View details for: ${row.cells[0].textContent}`);
+            // Implement view logic here
+        } else if (title === 'Delete') {
+            if (confirm(`Are you sure you want to delete ${row.cells[0].textContent}?`)) {
+                alert(`Deleted: ${row.cells[0].textContent}`);
+                // Implement delete logic here
+            }
+        } else if (title === 'Review' || title === 'Assign' || title === 'Update Status' || title === 'Process') {
+            alert(`${title} action for: ${row.cells[0].textContent}`);
+            // Implement specific action logic here
+        }
+    }
+});
+
+// Initialize dashboard
+loadDashboardData();
+
+// Trigger default section
+document.querySelector('.nav-link[data-section="overview"]').click();
+</script>
+</body>
+</html>
