@@ -1362,7 +1362,7 @@
               <h3 class="ws-book-title text-lg font-medium text-gray-900 mb-1 truncate">The Silent Echo</h3>
               <p class="ws-book-author text-sm text-gray-600 mb-3 truncate">by Sarah Johnson</p>
               <div class="flex justify-between items-center flex-wrap gap-2">
-                <span class="ws-book-price text-lg font-bold text-gray-900">$1499</span>
+                <span class="ws-book-price text-lg font-bold text-gray-900">SH.1499</span>
                 <div class="flex space-x-2">
                   <button class="ws-add-to-cart w-9 h-9 rounded-full bg-[#00ffae] bg-opacity-10 text-[#00ffae] flex items-center justify-center hover:bg-opacity-20 transition-colors duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1391,7 +1391,7 @@
               <h3 class="ws-book-title text-lg font-medium text-gray-900 mb-1 truncate">Digital Minds</h3>
               <p class="ws-book-author text-sm text-gray-600 mb-3 truncate">by Michael Chen</p>
               <div class="flex justify-between items-center flex-wrap gap-2">
-                <span class="ws-book-price text-lg font-bold text-gray-900">$1999</span>
+                <span class="ws-book-price text-lg font-bold text-gray-900">SH.1999</span>
                 <div class="flex space-x-2">
                   <button class="ws-add-to-cart w-9 h-9 rounded-full bg-[#00ffae] bg-opacity-10 text-[#00ffae] flex items-center justify-center hover:bg-opacity-20 transition-colors duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1420,7 +1420,7 @@
               <h3 class="ws-book-title text-lg font-medium text-gray-900 mb-1 truncate">Midnight Whispers</h3>
               <p class="ws-book-author text-sm text-gray-600 mb-3 truncate">by Elena Rodriguez</p>
               <div class="flex justify-between items-center flex-wrap gap-2">
-                <span class="ws-book-price text-lg font-bold text-gray-900">$1299</span>
+                <span class="ws-book-price text-lg font-bold text-gray-900">Sh.1299</span>
                 <div class="flex space-x-2">
                   <button class="ws-add-to-cart w-9 h-9 rounded-full bg-[#00ffae] bg-opacity-10 text-[#00ffae] flex items-center justify-center hover:bg-opacity-20 transition-colors duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1449,7 +1449,7 @@
               <h3 class="ws-book-title text-lg font-medium text-gray-900 mb-1 truncate">The Green Revolution</h3>
               <p class="ws-book-author text-sm text-gray-600 mb-3 truncate">by David Wilson</p>
               <div class="flex justify-between items-center flex-wrap gap-2">
-                <span class="ws-book-price text-lg font-bold text-gray-900">$1699</span>
+                <span class="ws-book-price text-lg font-bold text-gray-900">SH.1699</span>
                 <div class="flex space-x-2">
                   <button class="ws-add-to-cart w-9 h-9 rounded-full bg-[#00ffae] bg-opacity-10 text-[#00ffae] flex items-center justify-center hover:bg-opacity-20 transition-colors duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1478,7 +1478,7 @@
               <h3 class="ws-book-title text-lg font-medium text-gray-900 mb-1 truncate">Crimson Tides</h3>
               <p class="ws-book-author text-sm text-gray-600 mb-3 truncate">by James Peterson</p>
               <div class="flex justify-between items-center flex-wrap gap-2">
-                <span class="ws-book-price text-lg font-bold text-gray-900">$1399</span>
+                <span class="ws-book-price text-lg font-bold text-gray-900">SH.1399</span>
                 <div class="flex space-x-2">
                   <button class="ws-add-to-cart w-9 h-9 rounded-full bg-[#00ffae] bg-opacity-10 text-[#00ffae] flex items-center justify-center hover:bg-opacity-20 transition-colors duration-200">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1969,305 +1969,385 @@
 </footer>
 
 <style>
-  /* Blog Card Animations */
+ /* Blog Card Animations */
+.ws-blog-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; /* Ensure proper stacking context */
+  z-index: 1; /* Prevent overlap issues */
+}
+
+.ws-blog-card:nth-child(1) { transition-delay: 0.1s; }
+.ws-blog-card:nth-child(2) { transition-delay: 0.2s; }
+.ws-blog-card:nth-child(3) { transition-delay: 0.3s; }
+.ws-blog-card:nth-child(4) { transition-delay: 0.4s; }
+
+.ws-blog-card.ws-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroller Animation */
+.ws-scroll-track {
+  animation: wsScrollBlogs 40s linear infinite;
+  will-change: transform;
+}
+
+@keyframes wsScrollBlogs {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Hover and Tap Content Transition */
+.ws-blog-card.ws-tapped .ws-blog-excerpt,
+.ws-blog-card:hover .ws-blog-excerpt {
+  display: none !important; /* High specificity to ensure hiding */
+}
+
+.ws-blog-card.ws-tapped .ws-blog-hover-content,
+.ws-blog-card:hover .ws-blog-hover-content {
+  display: block !important; /* Ensure visibility */
+  opacity: 1 !important;
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 10; /* Ensure content is above other elements */
+}
+
+/* Explicit styling for Continue Reading link */
+.ws-continue-reading {
+  display: inline-flex !important;
+  align-items: center;
+  color: #00ffae !important;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  z-index: 11; /* Ensure button is clickable */
+  visibility: visible !important; /* Force visibility */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.ws-continue-reading:hover {
+  color: #0d9488 !important;
+  transform: translateX(5px); /* Subtle animation on hover */
+}
+
+/* Glow Button Effect */
+.ws-glow-button:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 174, 0.3);
+}
+
+.ws-pen-icon {
+  filter: drop-shadow(0 0 4px rgba(0, 255, 174, 0.5));
+}
+
+/* Modal Styles */
+.ws-modal-show {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  z-index: 1000; /* Ensure modal is above all content */
+}
+
+.ws-modal-show .ws-modal-content {
+  transform: scale(1) !important;
+  max-height: 90vh; /* Ensure modal fits within viewport */
+  overflow-y: auto; /* Allow scrolling if content is long */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
   .ws-blog-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-bottom: 1.5rem;
   }
   
-  .ws-blog-card:nth-child(1) { transition-delay: 0.1s; }
-  .ws-blog-card:nth-child(2) { transition-delay: 0.2s; }
-  .ws-blog-card:nth-child(3) { transition-delay: 0.3s; }
-  .ws-blog-card:nth-child(4) { transition-delay: 0.4s; }
-  
-  .ws-blog-card.ws-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .ws-modal-content {
+    margin: 1rem;
+    max-width: 95vw; /* Ensure modal fits on small screens */
   }
-  
-  /* Scroller Animation */
+
+  /* Adjust animation duration for mobile */
   .ws-scroll-track {
-    animation: wsScrollBlogs 40s linear infinite;
-    will-change: transform;
+    animation-duration: 30s;
+  }
+
+  /* Ensure tap content is visible on mobile */
+  .ws-blog-card.ws-tapped .ws-blog-hover-content {
+    display: block !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Ensure hover effects only on devices that support hover */
+@media (hover: hover) {
+  .ws-blog-card:hover {
+    transform: translateY(-0.5rem);
   }
   
-  @keyframes wsScrollBlogs {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
-  
-  /* Hover and Tap Content Transition */
-  .ws-blog-card.ws-tapped .ws-blog-excerpt,
-  .ws-blog-card:hover .ws-blog-excerpt {
-    display: none;
-  }
-  
-  .ws-blog-card.ws-tapped .ws-blog-hover-content,
   .ws-blog-card:hover .ws-blog-hover-content {
-    display: block;
-    opacity: 1;
+    display: block !important;
+    opacity: 1 !important;
   }
   
-  /* Glow Button Effect */
-  .ws-glow-button:hover {
-    box-shadow: 0 0 20px rgba(0, 255, 174, 0.3);
+  .ws-blog-card:hover .ws-blog-excerpt {
+    display: none !important;
   }
-  
-  .ws-pen-icon {
-    filter: drop-shadow(0 0 4px rgba(0, 255, 174, 0.5));
-  }
-  
-  /* Modal Styles */
-  .ws-modal-show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  .ws-modal-show .ws-modal-content {
-    transform: scale(1);
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .ws-blog-card {
-      margin-bottom: 1.5rem;
-    }
-    
-    .ws-modal-content {
-      margin: 1rem;
-    }
+}
 
-    /* Adjust animation duration for mobile */
-    .ws-scroll-track {
-      animation-duration: 30s;
-    }
-  }
+/* Fix potential overlap issues */
+.ws-blog-hover-content {
+  position: relative;
+  z-index: 10;
+}
 
-  /* Ensure hover effects only on devices that support hover */
-  @media (hover: hover) {
-    .ws-blog-card:hover {
-      transform: translateY(-0.5rem);
-    }
-    
-    .ws-blog-card:hover .ws-blog-hover-content {
-      display: block;
-      opacity: 1;
-    }
-    
-    .ws-blog-card:hover .ws-blog-excerpt {
-      display: none;
-    }
-  }
+/* Ensure modal content is scrollable */
+.ws-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ws-modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0 10px 10px 0;
+}
+
+.ws-modal-content::-webkit-scrollbar-thumb {
+  background: #00ffae;
+  border-radius: 10px;
+}
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Blog post data
-    const blogPosts = [
-      {
-        id: 1,
-        title: "10 Techniques to Overcome Writer's Block",
-        category: "Writing Tips",
-        date: "June 15, 2023",
-        author: "Sarah Johnson",
-        authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
-        readingTime: "8 min read",
-        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        excerpt: "Every writer faces the dreaded blank page at some point. In this article, we explore proven strategies from bestselling authors to break through creative barriers and keep your writing flowing. From freewriting exercises to environmental changes, discover what works for professionals...",
-        hoverContent: "<span class='font-medium text-gray-900'>Featured Technique:</span> The \"Five Minute Sprint\" method used by Pulitzer Prize winners. Set a timer for five minutes and write without stopping, editing, or even lifting your pen from the paper. This bypasses your inner critic and often unlocks surprising creative pathways.",
-        fullContent: `
-          <p>Every writer faces the dreaded blank page at some point. In this article, we explore proven strategies from bestselling authors to break through creative barriers and keep your writing flowing. From freewriting exercises to environmental changes, discover what works for professionals.</p>
-          <p><span class="font-medium text-gray-900">Featured Technique:</span> The "Five Minute Sprint" method used by Pulitzer Prize winners. Set a timer for five minutes and write without stopping, editing, or even lifting your pen from the paper. This bypasses your inner critic and often unlocks surprising creative pathways.</p>
-          <h4>Additional Techniques:</h4>
-          <ul>
-            <li><strong>Change Your Environment:</strong> Move to a new location, like a café or park, to spark inspiration.</li>
-            <li><strong>Mind Mapping:</strong> Create a visual web of ideas to organize thoughts and find new angles.</li>
-            <li><strong>Write at a Different Time:</strong> Experiment with writing in the morning or late at night to find your peak creative hours.</li>
-            <li><strong>Read Widely:</strong> Dive into genres outside your comfort zone to ignite new ideas.</li>
-          </ul>
-          <p>These strategies, combined with persistence, can help any writer overcome creative blocks and produce their best work.</p>
-        `
-      },
-      {
-        id: 2,
-        title: "The Future of Digital Publishing",
-        category: "Industry Trends",
-        date: "May 28, 2023",
-        author: "Michael Chen",
-        authorImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
-        readingTime: "12 min read",
-        image: "https://images.unsplash.com/photo-1546074177-ffdda98d214f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        excerpt: "As technology evolves, so does how we consume literature. This deep dive examines emerging formats like interactive novels, AI-assisted storytelling, and immersive reading experiences that are reshaping the publishing landscape...",
-        hoverContent: "<span class='font-medium text-gray-900'>Key Insight:</span> The rise of \"adaptive literature\" - books that change based on reader preferences or reading habits. Early experiments show 40% higher engagement rates compared to traditional ebooks, suggesting a major shift in how stories might be told in the digital age.",
-        fullContent: `
-          <p>As technology evolves, so does how we consume literature. This deep dive examines emerging formats like interactive novels, AI-assisted storytelling, and immersive reading experiences that are reshaping the publishing landscape.</p>
-          <p><span class="font-medium text-gray-900">Key Insight:</span> The rise of "adaptive literature" - books that change based on reader preferences or reading habits. Early experiments show 40% higher engagement rates compared to traditional ebooks, suggesting a major shift in how stories might be told in the digital age.</p>
-          <h4>Emerging Trends:</h4>
-          <ul>
-            <li><strong>Interactive Novels:</strong> Readers choose plot directions, enhancing engagement.</li>
-            <li><strong>AI-Assisted Writing:</strong> Tools like AI editors help authors refine drafts faster.</li>
-            <li><strong>Augmented Reality Books:</strong> AR apps overlay digital content on physical books.</li>
-            <li><strong>Subscription Models:</strong> Platforms like Kindle Unlimited drive ebook consumption.</li>
-          </ul>
-          <p>The future of publishing lies in blending technology with storytelling to create personalized, immersive experiences for readers.</p>
-        `
-      },
-      {
-        id: 3,
-        title: "Interview with Award-Winning Author Elena Rodriguez",
-        category: "Author Spotlight",
-        date: "April 15, 2023",
-        author: "Jessica Williams",
-        authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
-        readingTime: "15 min read",
-        image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        excerpt: "We sit down with the acclaimed novelist to discuss her creative process, the challenges of writing historical fiction, and how she researches her vivid, authentic settings. Rodriguez shares her journey from first draft to published masterpiece...",
-        hoverContent: "<span class='font-medium text-gray-900'>Writing Tip:</span> Rodriguez reveals her \"three-layer\" research method: 1) Academic sources for facts, 2) Contemporary diaries for voices, and 3) Visiting locations to capture sensory details. \"The smell of a place tells you more than any history book,\" she says.",
-        fullContent: `
-          <p>We sit down with the acclaimed novelist to discuss her creative process, the challenges of writing historical fiction, and how she researches her vivid, authentic settings. Rodriguez shares her journey from first draft to published masterpiece.</p>
-          <p><span class="font-medium text-gray-900">Writing Tip:</span> Rodriguez reveals her "three-layer" research method: 1) Academic sources for facts, 2) Contemporary diaries for voices, and 3) Visiting locations to capture sensory details. "The smell of a place tells you more than any history book," she says.</p>
-          <h4>Key Insights from the Interview:</h4>
-          <ul>
-            <li><strong>Balancing Fact and Fiction:</strong> Rodriguez weaves historical accuracy with creative liberty to craft compelling narratives.</li>
-            <li><strong>Character Development:</strong> She spends weeks building character backstories before writing.</li>
-            <li><strong>Overcoming Doubt:</strong> Rodriguez shares how she pushes through self-doubt by focusing on small daily goals.</li>
-          </ul>
-          <p>This interview offers a rare glimpse into the mind of a literary master, with practical advice for aspiring authors.</p>
-        `
-      },
-      {
-        id: 4,
-        title: "Effective Book Promotion Strategies for New Authors",
-        category: "Marketing",
-        date: "March 22, 2023",
-        author: "Marcus Johnson",
-        authorImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
-        readingTime: "10 min read",
-        image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        excerpt: "Publishing your book is just the beginning. Learn how to build your author platform, connect with readers, and leverage social media without spending a fortune. Real-world examples from authors who successfully launched their debut works...",
-        hoverContent: "<span class='font-medium text-gray-900'>Pro Tip:</span> The \"100 True Fans\" approach - instead of chasing viral fame, focus on cultivating 100 dedicated readers who will buy everything you publish and actively recommend your work. This sustainable model often leads to more stable long-term success than chasing bestseller lists.",
-        fullContent: `
-          <p>Publishing your book is just the beginning. Learn how to build your author platform, connect with readers, and leverage social media without spending a fortune. Real-world examples from authors who successfully launched their debut works.</p>
-          <p><span class="font-medium text-gray-900">Pro Tip:</span> The "100 True Fans" approach - instead of chasing viral fame, focus on cultivating 100 dedicated readers who will buy everything you publish and actively recommend your work. This sustainable model often leads to more stable long-term success than chasing bestseller lists.</p>
-          <h4>Promotion Strategies:</h4>
-          <ul>
-            <li><strong>Build a Mailing List:</strong> Offer a free chapter to capture reader emails.</li>
-            <li><strong>Leverage Social Media:</strong> Post behind-the-scenes content to engage followers.</li>
-            <li><strong>Collaborate with Influencers:</strong> Partner with book bloggers or podcasters.</li>
-            <li><strong>Host Virtual Events:</strong> Use Zoom for book readings or Q&A sessions.</li>
-          </ul>
-          <p>With these strategies, new authors can build a loyal readership and boost their book’s visibility.</p>
-        `
-      }
-    ];
+  // Blog post data
+  const blogPosts = [
+    {
+      id: 1,
+      title: "10 Techniques to Overcome Writer's Block",
+      category: "Writing Tips",
+      date: "June 15, 2023",
+      author: "Sarah Johnson",
+      authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
+      readingTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      excerpt: "Every writer faces the dreaded blank page at some point. In this article, we explore proven strategies from bestselling authors to break through creative barriers and keep your writing flowing. From freewriting exercises to environmental changes, discover what works for professionals...",
+      hoverContent: "<span class='font-medium text-gray-900'>Featured Technique:</span> The \"Five Minute Sprint\" method used by Pulitzer Prize winners. Set a timer for five minutes and write without stopping, editing, or even lifting your pen from the paper. This bypasses your inner critic and often unlocks surprising creative pathways.",
+      fullContent: `
+        <p>Every writer faces the dreaded blank page at some point. In this article, we explore proven strategies from bestselling authors to break through creative barriers and keep your writing flowing. From freewriting exercises to environmental changes, discover what works for professionals.</p>
+        <p><span class="font-medium text-gray-900">Featured Technique:</span> The "Five Minute Sprint" method used by Pulitzer Prize winners. Set a timer for five minutes and write without stopping, editing, or even lifting your pen from the paper. This bypasses your inner critic and often unlocks surprising creative pathways.</p>
+        <h4>Additional Techniques:</h4>
+        <ul>
+          <li><strong>Change Your Environment:</strong> Move to a new location, like a café or park, to spark inspiration.</li>
+          <li><strong>Mind Mapping:</strong> Create a visual web of ideas to organize thoughts and find new angles.</li>
+          <li><strong>Write at a Different Time:</strong> Experiment with writing in the morning or late at night to find your peak creative hours.</li>
+          <li><strong>Read Widely:</strong> Dive into genres outside your comfort zone to ignite new ideas.</li>
+        </ul>
+        <p>These strategies, combined with persistence, can help any writer overcome creative blocks and produce their best work.</p>
+      `
+    },
+    {
+      id: 2,
+      title: "The Future of Digital Publishing",
+      category: "Industry Trends",
+      date: "May 28, 2023",
+      author: "Michael Chen",
+      authorImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
+      readingTime: "12 min read",
+      image: "https://images.unsplash.com/photo-1546074177-ffdda98d214f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      excerpt: "As technology evolves, so does how we consume literature. This deep dive examines emerging formats like interactive novels, AI-assisted storytelling, and immersive reading experiences that are reshaping the publishing landscape...",
+      hoverContent: "<span class='font-medium text-gray-900'>Key Insight:</span> The rise of \"adaptive literature\" - books that change based on reader preferences or reading habits. Early experiments show 40% higher engagement rates compared to traditional ebooks, suggesting a major shift in how stories might be told in the digital age.",
+      fullContent: `
+        <p>As technology evolves, so does how we consume literature. This deep dive examines emerging formats like interactive novels, AI-assisted storytelling, and immersive reading experiences that are reshaping the publishing landscape.</p>
+        <p><span class="font-medium text-gray-900">Key Insight:</span> The rise of "adaptive literature" - books that change based on reader preferences or reading habits. Early experiments show 40% higher engagement rates compared to traditional ebooks, suggesting a major shift in how stories might be told in the digital age.</p>
+        <h4>Emerging Trends:</h4>
+        <ul>
+          <li><strong>Interactive Novels:</strong> Readers choose plot directions, enhancing engagement.</li>
+          <li><strong>AI-Assisted Writing:</strong> Tools like AI editors help authors refine drafts faster.</li>
+          <li><strong>Augmented Reality Books:</strong> AR apps overlay digital content on physical books.</li>
+          <li><strong>Subscription Models:</strong> Platforms like Kindle Unlimited drive ebook consumption.</li>
+        </ul>
+        <p>The future of publishing lies in blending technology with storytelling to create personalized, immersive experiences for readers.</p>
+      `
+    },
+    {
+      id: 3,
+      title: "Interview with Award-Winning Author Elena Rodriguez",
+      category: "Author Spotlight",
+      date: "April 15, 2023",
+      author: "Jessica Williams",
+      authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
+      readingTime: "15 min read",
+      image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      excerpt: "We sit down with the acclaimed novelist to discuss her creative process, the challenges of writing historical fiction, and how she researches her vivid, authentic settings. Rodriguez shares her journey from first draft to published masterpiece...",
+      hoverContent: "<span class='font-medium text-gray-900'>Writing Tip:</span> Rodriguez reveals her \"three-layer\" research method: 1) Academic sources for facts, 2) Contemporary diaries for voices, and 3) Visiting locations to capture sensory details. \"The smell of a place tells you more than any history book,\" she says.",
+      fullContent: `
+        <p>We sit down with the acclaimed novelist to discuss her creative process, the challenges of writing historical fiction, and how she researches her vivid, authentic settings. Rodriguez shares her journey from first draft to published masterpiece.</p>
+        <p><span class="font-medium text-gray-900">Writing Tip:</span> Rodriguez reveals her "three-layer" research method: 1) Academic sources for facts, 2) Contemporary diaries for voices, and 3) Visiting locations to capture sensory details. "The smell of a place tells you more than any history book," she says.</p>
+        <h4>Key Insights from the Interview:</h4>
+        <ul>
+          <li><strong>Balancing Fact and Fiction:</strong> Rodriguez weaves historical accuracy with creative liberty to craft compelling narratives.</li>
+          <li><strong>Character Development:</strong> She spends weeks building character backstories before writing.</li>
+          <li><strong>Overcoming Doubt:</strong> Rodriguez shares how she pushes through self-doubt by focusing on small daily goals.</li>
+        </ul>
+        <p>This interview offers a rare glimpse into the mind of a literary master, with practical advice for aspiring authors.</p>
+      `
+    },
+    {
+      id: 4,
+      title: "Effective Book Promotion Strategies for New Authors",
+      category: "Marketing",
+      date: "March 22, 2023",
+      author: "Marcus Johnson",
+      authorImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
+      readingTime: "10 min read",
+      image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+      excerpt: "Publishing your book is just the beginning. Learn how to build your author platform, connect with readers, and leverage social media without spending a fortune. Real-world examples from authors who successfully launched their debut works...",
+      hoverContent: "<span class='font-medium text-gray-900'>Pro Tip:</span> The \"100 True Fans\" approach - instead of chasing viral fame, focus on cultivating 100 dedicated readers who will buy everything you publish and actively recommend your work. This sustainable model often leads to more stable long-term success than chasing bestseller lists.",
+      fullContent: `
+        <p>Publishing your book is just the beginning. Learn how to build your author platform, connect with readers, and leverage social media without spending a fortune. Real-world examples from authors who successfully launched their debut works.</p>
+        <p><span class="font-medium text-gray-900">Pro Tip:</span> The "100 True Fans" approach - instead of chasing viral fame, focus on cultivating 100 dedicated readers who will buy everything you publish and actively recommend your work. This sustainable model often leads to more stable long-term success than chasing bestseller lists.</p>
+        <h4>Promotion Strategies:</h4>
+        <ul>
+          <li><strong>Build a Mailing List:</strong> Offer a free chapter to capture reader emails.</li>
+          <li><strong>Leverage Social Media:</strong> Post behind-the-scenes content to engage followers.</li>
+          <li><strong>Collaborate with Influencers:</strong> Partner with book bloggers or podcasters.</li>
+          <li><strong>Host Virtual Events:</strong> Use Zoom for book readings or Q&A sessions.</li>
+        </ul>
+        <p>With these strategies, new authors can build a loyal readership and boost their book’s visibility.</p>
+      `
+    }
+  ];
 
-    // Initialize blog card animations
-    const blogCards = document.querySelectorAll('.ws-blog-card');
-    
-    // Make cards visible on load
-    setTimeout(() => {
-      blogCards.forEach(card => {
-        card.classList.add('ws-visible');
-      });
-    }, 100);
-    
-    // Pause scroller on hover and touch
-    const scroller = document.querySelector('.ws-blog-scroller');
-    const track = document.querySelector('.ws-scroll-track');
-    
+  // Initialize blog card animations
+  const blogCards = document.querySelectorAll('.ws-blog-card');
+  console.log('Blog cards found:', blogCards.length);
+
+  // Make cards visible on load
+  setTimeout(() => {
+    blogCards.forEach(card => {
+      card.classList.add('ws-visible');
+      console.log('Added ws-visible to card:', card);
+    });
+  }, 100);
+
+  // Pause scroller on hover and touch
+  const scroller = document.querySelector('.ws-blog-scroller');
+  const track = document.querySelector('.ws-scroll-track');
+
+  if (scroller && track) {
     // Hover events for desktop
     scroller.addEventListener('mouseenter', () => {
-      console.log('Scroller hover: pause'); // Debug log
+      console.log('Scroller hover: pause');
       track.style.animationPlayState = 'paused';
     });
-    
+
     scroller.addEventListener('mouseleave', () => {
-      console.log('Scroller hover: resume'); // Debug log
+      console.log('Scroller hover: resume');
       track.style.animationPlayState = 'running';
     });
-    
+
     // Touch events for mobile
     scroller.addEventListener('touchstart', () => {
-      console.log('Scroller touch: pause'); // Debug log
+      console.log('Scroller touch: pause');
       track.style.animationPlayState = 'paused';
     });
-    
+
     scroller.addEventListener('touchend', () => {
-      console.log('Scroller touch: resume'); // Debug log
+      console.log('Scroller touch: resume');
       track.style.animationPlayState = 'running';
     });
-    
-    // Tap to toggle hover content on mobile
-    blogCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        // Prevent tap from toggling if clicking "Continue Reading"
-        if (e.target.closest('.ws-continue-reading')) return;
-        
-        console.log('Card tapped:', card); // Debug log
-        const isTapped = card.classList.contains('ws-tapped');
-        
-        // Remove ws-tapped from all cards
-        blogCards.forEach(c => c.classList.remove('ws-tapped'));
-        
-        // Toggle ws-tapped on clicked card
-        if (!isTapped) {
-          card.classList.add('ws-tapped');
-        }
-        
-        e.stopPropagation(); // Prevent modal click if open
-      });
+  } else {
+    console.error('Scroller or track not found:', { scroller, track });
+  }
+
+  // Tap to toggle hover content on mobile
+  blogCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Prevent tap from toggling if clicking "Continue Reading"
+      if (e.target.closest('.ws-continue-reading')) {
+        console.log('Clicked Continue Reading, skipping tap toggle');
+        return;
+      }
+
+      console.log('Card tapped:', card);
+      const isTapped = card.classList.contains('ws-tapped');
+
+      // Remove ws-tapped from all cards
+      blogCards.forEach(c => c.classList.remove('ws-tapped'));
+
+      // Toggle ws-tapped on clicked card
+      if (!isTapped) {
+        card.classList.add('ws-tapped');
+        console.log('Added ws-tapped to card:', card);
+      }
+
+      e.stopPropagation(); // Prevent modal click if open
     });
-    
-    // Initialize "Write for Us" button
-    const writeButton = document.querySelector('.ws-glow-button');
-    
+  });
+
+  // Initialize "Write for Us" button
+  const writeButton = document.querySelector('.ws-glow-button');
+  if (writeButton) {
     writeButton.addEventListener('mouseenter', () => {
       const glow = writeButton.querySelector('.ws-glow');
-      glow.style.opacity = '0.2';
-      glow.style.animation = 'pulse 2s infinite';
+      if (glow) {
+        glow.style.opacity = '0.2';
+        glow.style.animation = 'pulse 2s infinite';
+        console.log('Write button hover: glow activated');
+      }
     });
-    
+
     writeButton.addEventListener('mouseleave', () => {
       const glow = writeButton.querySelector('.ws-glow');
-      glow.style.opacity = '0';
-      glow.style.animation = 'none';
+      if (glow) {
+        glow.style.opacity = '0';
+        glow.style.animation = 'none';
+        console.log('Write button hover: glow deactivated');
+      }
     });
-    
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
+  } else {
+    console.error('Write for Us button not found');
+  }
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver(
+    (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('ws-visible');
+          console.log('Intersection observed, added ws-visible:', entry.target);
         }
       });
-    }, { threshold: 0.1 });
-    
-    blogCards.forEach(card => {
-      observer.observe(card);
-    });
+    },
+    { threshold: 0.1 }
+  );
 
-    // Initialize blog modal
-    const modal = document.getElementById('ws-blog-modal');
-    const closeBtn = document.getElementById('ws-blog-modal-close');
-    const continueReadingLinks = document.querySelectorAll('.ws-continue-reading');
+  blogCards.forEach(card => {
+    observer.observe(card);
+  });
 
-    console.log('Modal element:', modal); // Debug log
-    console.log('Close button element:', closeBtn); // Debug log
+  // Initialize blog modal
+  const modal = document.getElementById('ws-blog-modal');
+  const closeBtn = document.getElementById('ws-blog-modal-close');
+  const continueReadingLinks = document.querySelectorAll('.ws-continue-reading');
 
-    if (!modal || !closeBtn) {
-      console.error('Modal or close button not found in DOM');
-    }
+  console.log('Modal element:', modal);
+  console.log('Close button element:', closeBtn);
+  console.log('Continue reading links found:', continueReadingLinks.length);
 
-    continueReadingLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const blogId = parseInt(link.dataset.blogId);
-        const blog = blogPosts.find(post => post.id === blogId);
-        
-        console.log('Opening modal for blog ID:', blogId); // Debug log
-        
-        if (blog) {
+  if (!modal || !closeBtn) {
+    console.error('Modal or close button not found in DOM');
+    return;
+  }
+
+  continueReadingLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const blogId = parseInt(link.dataset.blogId);
+      console.log('Opening modal for blog ID:', blogId);
+      const blog = blogPosts.find(post => post.id === blogId);
+
+      if (blog) {
+        try {
           document.getElementById('ws-modal-blog-image').src = blog.image;
           document.getElementById('ws-modal-blog-category').textContent = blog.category;
           document.getElementById('ws-modal-blog-date').textContent = blog.date;
@@ -2278,60 +2358,68 @@
           document.getElementById('ws-modal-blog-content').innerHTML = blog.fullContent;
 
           modal.classList.add('ws-modal-show');
-          track.style.animationPlayState = 'paused';
-          document.body.style.overflow = 'hidden'; // Prevent background scroll
-          
-          // Reset tapped state when opening modal
+          if (track) track.style.animationPlayState = 'paused';
+          document.body.style.overflow = 'hidden';
           blogCards.forEach(c => c.classList.remove('ws-tapped'));
+          console.log('Modal opened successfully for blog:', blog.title);
+        } catch (error) {
+          console.error('Error populating modal:', error);
         }
-      });
+      } else {
+        console.error('Blog not found for ID:', blogId);
+      }
     });
+  });
 
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        console.log('Close button clicked'); // Debug log
-        modal.classList.remove('ws-modal-show');
-        track.style.animationPlayState = 'running';
-        document.body.style.overflow = '';
-      });
+  closeBtn.addEventListener('click', () => {
+    console.log('Close button clicked');
+    modal.classList.remove('ws-modal-show');
+    if (track) track.style.animationPlayState = 'running';
+    document.body.style.overflow = '';
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      console.log('Outside modal clicked');
+      modal.classList.remove('ws-modal-show');
+      if (track) track.style.animationPlayState = 'running';
+      document.body.style.overflow = '';
     }
+  });
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        console.log('Outside modal clicked'); // Debug log
-        modal.classList.remove('ws-modal-show');
-        track.style.animationPlayState = 'running';
-        document.body.style.overflow = '';
-      }
-    });
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('ws-modal-show')) {
+      console.log('Escape key pressed');
+      modal.classList.remove('ws-modal-show');
+      if (track) track.style.animationPlayState = 'running';
+      document.body.style.overflow = '';
+    }
+  });
 
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('ws-modal-show')) {
-        console.log('Escape key pressed'); // Debug log
-        modal.classList.remove('ws-modal-show');
-        track.style.animationPlayState = 'running';
-        document.body.style.overflow = '';
-      }
-    });
+  // Focus trap for accessibility
+  const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const firstFocusable = focusableElements[0];
+  const lastFocusable = focusableElements[focusableElements.length - 1];
 
-    // Focus trap for accessibility
-    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-    const firstFocusable = focusableElements[0];
-    const lastFocusable = focusableElements[focusableElements.length - 1];
-
+  if (firstFocusable && lastFocusable) {
     modal.addEventListener('keydown', (e) => {
       if (e.key === 'Tab' && modal.classList.contains('ws-modal-show')) {
         if (e.shiftKey && document.activeElement === firstFocusable) {
           e.preventDefault();
           lastFocusable.focus();
+          console.log('Focus trapped: moved to last focusable element');
         } else if (!e.shiftKey && document.activeElement === lastFocusable) {
           e.preventDefault();
           firstFocusable.focus();
+          console.log('Focus trapped: moved to first focusable element');
         }
       }
     });
-  });
+  } else {
+    console.warn('No focusable elements found in modal');
+  }
+});
 </script>
 
 <style>
@@ -2446,7 +2534,7 @@
         id: 1,
         title: "The Silent Echo",
         author: "by Sarah Johnson",
-        price: "$1499",
+        price: "SH.1499",
         genre: "fiction",
         latest: true,
         image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
@@ -2456,7 +2544,7 @@
         id: 2,
         title: "Digital Minds",
         author: "by Michael Chen",
-        price: "$1999",
+        price: "SH.1999",
         genre: "nonfiction",
         popular: true,
         image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
@@ -2466,7 +2554,7 @@
         id: 3,
         title: "Midnight Whispers",
         author: "by Elena Rodriguez",
-        price: "$1299",
+        price: "SH.1299",
         genre: "fiction",
         popular: true,
         image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
@@ -2476,7 +2564,7 @@
         id: 4,
         title: "The Green Revolution",
         author: "by David Wilson",
-        price: "$1699",
+        price: "SH.1699",
         genre: "nonfiction",
         latest: true,
         image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
@@ -2486,7 +2574,7 @@
         id: 5,
         title: "Crimson Tides",
         author: "by James Peterson",
-        price: "$1399",
+        price: "SH.1399",
         genre: "fiction",
         image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
         synopsis: "A historical epic set during the golden age of piracy in the Caribbean. Follow the intertwined fates of a disgraced naval officer, a runaway slave turned pirate captain, and a governor's daughter as their lives collide amidst the political turmoil of 18th century Jamaica."
