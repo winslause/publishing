@@ -167,6 +167,23 @@
                 display: flex !important;
             }
         }
+
+        /* Mobile dropdown content styles */
+        .mobile-dropdown-content {
+            display: none;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            transition: height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .mobile-dropdown-content.active {
+            display: block;
+            opacity: 1;
+            height: auto;
+        }
     </style>
 </head>
 <body class="font-sans bg-gray-50">
@@ -213,7 +230,7 @@
                     <div class="nav-item group relative">
                         <a href="#" class="nav-link text-gray-700 hover:text-gray-900 font-medium flex items-center">
                             About Us
-                            <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24  vaan="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
                         </a>
@@ -417,14 +434,14 @@
                     </svg>
                 </a>
                 
-                <div class="mobile-accordion">
+                <div class="mobile-accordion" data-state="closed">
                     <button class="mobile-nav-link text-gray-700 font-medium pb-2 flex items-center justify-between w-full">
                         <span>About Us</span>
                         <svg class="w-5 h-5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-content pl-4 mt-2 hidden">
+                    <div class="mobile-dropdown-content pl-4 mt-2">
                         <a href="#team-header" class="block py-2 text-gray-600 hover:text-emerald-600">Our Team</a>
                         <a href="#wenstech-contact" class="block py-2 text-gray-600 hover:text-emerald-600">Contact Us</a>
                         <a href="#wenstech-contact" class="block py-2 text-gray-600 hover:text-emerald-600">Our Offices</a>
@@ -432,14 +449,14 @@
                     </div>
                 </div>
                 
-                <div class="mobile-accordion">
+                <div class="mobile-accordion" data-state="closed">
                     <button class="mobile-nav-link text-gray-700 font-medium pb-2 flex items-center justify-between w-full">
                         <span>Products & Services</span>
                         <svg class="w-5 h-5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-content pl-4 mt-2 hidden">
+                    <div class="mobile-dropdown-content pl-4 mt-2">
                         <a href="#ws-products-section" class="block py-2 text-gray-600 hover:text-emerald-600">Book Publishing</a>
                         <a href="#ws-products-section" class="block py-2 text-gray-600 hover:text-emerald-600">eBooks</a>
                         <a href="#ws-products-section" class="block py-2 text-gray-600 hover:text-emerald-600">Editing</a>
@@ -448,14 +465,14 @@
                     </div>
                 </div>
                 
-                <div class="mobile-accordion">
+                <div class="mobile-accordion" data-state="closed">
                     <button class="mobile-nav-link text-gray-700 font-medium pb-2 flex items-center justify-between w-full">
                         <span>Blogs</span>
                         <svg class="w-5 h-5 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="mobile-dropdown-content pl-4 mt-2 hidden">
+                    <div class="mobile-dropdown-content pl-4 mt-2">
                         <a href="#" class="block py-2 text-gray-600 hover:text-emerald-600">The Future of Publishing</a>
                         <a href="#" class="block py-2 text-gray-600 hover:text-emerald-600">Self-Publishing Guide</a>
                         <a href="#" class="block py-2 text-gray-600 hover:text-emerald-600">Marketing Your Book</a>
@@ -531,11 +548,45 @@
             });
 
             // Mobile accordion functionality
-            $('.mobile-accordion button').click(function() {
+            $('.mobile-accordion button').click(function(e) {
                 try {
+                    e.preventDefault();
                     console.log("Accordion clicked");
-                    $(this).find('svg').toggleClass('rotate-180');
-                    $(this).siblings('.mobile-dropdown-content').slideToggle(200);
+                    const $accordion = $(this).closest('.mobile-accordion');
+                    const $dropdown = $accordion.find('.mobile-dropdown-content');
+                    const $icon = $(this).find('svg');
+                    const isOpen = $accordion.data('state') === 'open';
+
+                    // Stop any ongoing animations
+                    $dropdown.stop(true, true);
+
+                    if (isOpen) {
+                        // Close the dropdown
+                        $dropdown.slideUp(400, function() {
+                            $dropdown.removeClass('active');
+                            $accordion.data('state', 'closed');
+                            $icon.removeClass('rotate-180');
+                        });
+                    } else {
+                        // Close other open dropdowns
+                        $('.mobile-accordion').not($accordion).each(function() {
+                            const $otherAccordion = $(this);
+                            if ($otherAccordion.data('state') === 'open') {
+                                $otherAccordion.find('.mobile-dropdown-content').slideUp(400, function() {
+                                    $otherAccordion.find('.mobile-dropdown-content').removeClass('active');
+                                    $otherAccordion.data('state', 'closed');
+                                    $otherAccordion.find('svg').removeClass('rotate-180');
+                                });
+                            }
+                        });
+
+                        // Open the clicked dropdown
+                        $dropdown.slideDown(400, function() {
+                            $dropdown.addClass('active');
+                            $accordion.data('state', 'open');
+                            $icon.addClass('rotate-180');
+                        });
+                    }
                 } catch (e) {
                     console.error("Accordion error:", e);
                 }
@@ -606,6 +657,7 @@
             }
         });
     </script>
+
 
 
 
